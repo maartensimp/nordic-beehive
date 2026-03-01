@@ -1,0 +1,577 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #FDF7F0;
+    margin: 0;
+}
+
+.configurator {
+    width: 420px;
+    margin: auto;
+    background: #ddd;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.prijsblok {
+    width: 420px;
+    margin: 25px auto 0 auto;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.overzicht-titel {
+    margin-top: 40px;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+h1 {
+    margin-top: 0;
+}
+
+label {
+    display: block;
+    margin-top: 18px;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+select {
+    width: 100%;
+    padding: 6px;
+    font-size: 14px;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+button {
+    padding: 6px 10px;
+    cursor: pointer;
+}
+
+ul {
+    padding-left: 18px;
+}
+
+li {
+    margin: 6px 0;
+}
+
+li button {
+    margin-left: 10px;
+}
+
+/* 🏆 VISUALISER */
+
+#visualiser {
+    margin-top: 25px;
+    position: relative;
+    zoom: 0.55;
+}
+
+.visual-container {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+}
+
+/* STACK ITEMS */
+
+.stack-item {
+    height: auto;
+    display: block;
+    position: relative;
+}
+
+/* Dak altijd visueel vooraan */
+
+.stack-item.dak {
+    z-index: 10;
+}
+
+/* 🏆 DAK OFFSET RULE */
+
+.dak-offset {
+    margin-bottom: -25px;
+}
+
+.prijsblok {
+    width: 420px;
+    margin: 25px auto 0 auto;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+
+#bestellingTotaal {
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+#addToOrder {
+    display: block;
+    width: 420px;
+    margin: 10px auto;
+    padding: 10px;
+    font-size: 15px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.bestel-item {
+    margin-top: 10px;
+    padding: 10px;
+    background: #FDF7F0;
+    border-radius: 6px;
+}
+
+.bestel-kaart {
+    display: flex;
+    gap: 20px;
+    padding: 15px;
+    margin-top: 15px;
+    background: #FDF7F0;
+    border-radius: 10px;
+}
+
+.bestel-visual {
+    width: 140px;
+    flex-shrink: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.bestel-visual img {
+    width: 200px;
+    height: auto;
+
+    object-fit: contain;
+}
+
+.bestel-visual #visualiser {
+    transform: none !important;
+}
+
+.bestel-info {
+    flex: 1;
+}
+
+.bestel-beschrijving {
+    color: #666;
+    font-size: 13px;
+}
+
+.bestel-controls {
+    margin: 8px 0;
+}
+
+.bestel-prijs {
+    font-weight: bold;
+    margin: 6px 0;
+    font-size: 16px;
+}
+
+/* Actieblok onder totaal */
+
+#actieBlok {
+    margin-top: 25px;
+}
+
+.actie-primaire,
+.actie-secundaire {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.btn-primary {
+    width: 300px;
+    padding: 12px;
+    display: block;
+    font-size: 15px;
+    margin-top: 10px;
+    background: #2f3e46;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background: #354f52;
+}
+
+.btn-outline {
+    width: 300px;
+    padding: 12px;
+    display: block;
+    font-size: 15px;
+    margin-top: 10px;
+    background: white;
+    border: 1px solid #2f3e46;
+    color: #2f3e46;
+    cursor: pointer;
+}
+
+.btn-outline:hover {
+    background: #f1f1f1;
+}
+
+.actie-tekst {
+    font-size: 13px;
+    color: #666;
+    margin-top: 10px;
+    line-height: 1.4;
+}
+
+#bodemKleurWrapper label,
+#moduleOpties label,
+.normal-label,
+#dakKleurWrapper label {
+    font-weight: normal;
+}
+
+#formulierBlok {
+    margin-top: 40px;
+}
+
+#contactForm {
+    margin-top: 15px;
+}
+
+#contactForm input,
+#contactForm textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.factuur-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.factuur-text {
+    margin: 0;
+    font-weight: 600;
+}
+
+.factuur-checkbox {
+    width: 18px;
+    height: 18px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-weight: normal;
+}
+
+.checkbox-label input {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+}
+
+.form-group {
+    display: block;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.factuur-group label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;   /* indien je het terug vet wil */
+}
+
+.factuur-group input[type="checkbox"] {
+    width: auto !important;
+    height: 18px;
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: #FDF7F0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav a {
+    margin-left: 25px;
+    text-decoration: none;
+    color: #1B2F44;
+    font-weight: 700;
+    font-size: 21px;        /* 👈 groter */
+    letter-spacing: 0.5px;  /* 👈 iets eleganter */
+    transition: color 0.2s ease;
+}
+
+nav a:hover {
+    color: #F7C112;
+}
+
+nav a.active {
+    color: #F7C112;
+}
+
+.site-logo {
+    width: 420px;
+    height: auto;
+}
+
+section {
+    scroll-margin-top: 180px;   /* hoogte van je header */
+}
+
+.hero {
+    padding: 100px 0;
+    text-align: center;
+    line-height: 1.6;
+    background: #FDF7F0;
+}
+
+.section {
+    padding: 100px 0px;
+    line-height: 1.6;
+}
+
+.light {
+    background: #FDF7F0;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 14px 28px;
+    background: #1B2F44;     /* blauw */
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    border: none;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+    background: #F7C112;     /* geel */
+    color: #1B2F44;          /* tekst wordt blauw */
+}
+
+.btn-outline {
+    display: inline-block;
+    padding: 12px 25px;
+    border: 1px solid #333;
+    color: #333;
+    text-decoration: none;
+}
+
+.footer {
+    padding: 30px 0;
+    text-align: center;
+    background: #FDF7F0;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.color-swatch {
+    width: 100%;
+    height: 120px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* Kleuren */
+.wit    { background: #F2F2F2; color: #1B2F44; }
+.groen  { background: #7F9F63; color: white; }
+.blauw  { background: #4C87A6; color: white; }
+.rood   { background: #8B2A1A; color: white; }
+.geel   { background: #E5B75C; color: #1B2F44; }
+
+.color-card {
+    text-align: center;
+    width: 100%;
+    max-width: 380px;
+    aspect-ratio: 3 / 4;   /* Portrait verhouding */
+    position: relative;
+}
+
+.color-hover {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 14px;
+}
+
+/* Voorzijde */
+.color-front {
+    position: absolute;
+    inset: 0;                 /* vervangt width/height */
+    padding: 40px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  /* verticaal */
+    align-items: center;      /* horizontaal */
+
+    text-align: center;
+
+    transition: opacity 0.4s ease;
+    z-index: 2;
+}
+
+.color-front h3 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    max-width: 90%;
+}
+
+.color-front p {
+    font-size: 16px;
+    opacity: 0.9;
+    max-width: 90%;
+}
+
+/* Achterzijde */
+.color-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.color-back img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+/* Hover effect */
+.color-hover:hover .color-back {
+    opacity: 1;
+}
+
+.color-hover:hover .color-front {
+    opacity: 0;
+}
+
+.color-hover:hover .color-back img {
+    transform: scale(1.05);
+}
+
+.kleuren-section {
+    padding: 100px 0px;
+}
+
+.kleuren-intro {
+    margin: 20px 0 60px;
+    line-height: 1.6;
+}
+
+.kleuren-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 50px;
+    justify-items: center;
+}
+
+.kleur-subtitel {
+    display: block;
+    font-size: 18px;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
+.usp-section {
+    padding: 0px 0px;
+    background: #FDF7F0;
+}
+
+.usp-section h2 {
+    margin-bottom: 5px;
+}
+
+.usp-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.usp-item h3 {
+    color: #1B2F44;
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+.usp-item h3::after {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 3px;
+    background: #F7C112;
+    margin-top: 8px;
+}
+
+.usp-item p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: inherit;   /* gebruikt standaard tekstkleur */
+}

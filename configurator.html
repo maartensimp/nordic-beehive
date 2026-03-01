@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>Configureer uw kast – Nordic Beehive</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="logo.png">
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="container header-inner">
+        <a href="index.html">
+            <img src="logo.png" alt="Nordic Beehive" class="site-logo">
+        </a>
+
+        <nav>
+            <a href="index.html" class="nav-link" data-page="home">Home</a>
+            <a href="index.html#verhaal" class="nav-link">Onze visie</a>
+            <a href="index.html#kleuren" class="nav-link">Kleuren</a>
+            <a href="index.html#realisaties" class="nav-link">Realisaties</a>
+            <a href="configurator.html" class="nav-link" data-page="configurator">Configurator</a>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+    <div class="container">
+
+<div class="configurator">
+  
+    <h1>Configureer uw kast</h1>
+
+    <!-- BODEM -->
+    <label>Bodem</label>
+    <select id="bodemSelect">
+    	<option value="none">Nee</option>
+    	<option value="Bodem.svg">Ja</option>
+    </select>
+
+    <div id="bodemKleurWrapper">
+
+        <label>Bodem kleur</label>
+        <select id="bodemKleur">
+            <option value="wit">Wit</option>
+            <option value="geel" selected>Geel</option>
+            <option value="rood">Rood</option>
+            <option value="groen">Groen</option>
+            <option value="blauw">Blauw</option>
+        </select>
+
+        <label>Vliegplank kleur</label>
+        <select id="plankKleur">
+            <option value="wit" selected>Wit</option>
+            <option value="geel">Geel</option>
+            <option value="rood">Rood</option>
+            <option value="groen">Groen</option>
+            <option value="blauw">Blauw</option>
+        </select>
+
+        <label>Binnenzijde afgewerkt met propolis</label>
+        <select id="bodemPropolis">
+            <option value="nee" selected>Nee</option>
+            <option value="ja">Ja</option>
+        </select>
+
+    </div>
+
+    <!-- MIDDEN -->
+    <label>Midden</label>
+    <div class="buttons">
+	<button onclick="addModule('Broedbak basis.svg')">➕ Broedbak</button>
+	<button onclick="addModule('Honingzolder basis.svg')">➕ Honingzolder</button>
+	<button onclick="addModule('Koninginnenrooster.svg')">➕ Rooster</button>
+    </div>
+
+    <div id="moduleOpties">
+
+        <label>Binnenzijde afgewerkt met propolis</label>
+        <select id="modulePropolis">
+            <option value="nee" selected>Nee</option>
+            <option value="ja">Ja</option>
+        </select>
+
+        <label>Metalen handvaten</label>
+        <select id="handvaten">
+            <option value="nee" selected>Nee</option>
+            <option value="ja">Ja</option>
+        </select>
+
+        <label>Hoekbescherming</label>
+        <select id="hoekbescherming">
+            <option value="nee" selected>Nee</option>
+            <option value="ja">Ja</option>
+        </select>
+
+        <label>Gemonteerde ramen</label>
+        <select id="ramen">
+            <option value="nee" selected>Nee</option>
+            <option value="ja">Ja</option>
+            <option value="was">Ja, inclusief waswafels</option>
+        </select>
+
+    </div>
+
+    <!-- STACK LIST -->
+    <label class="normal-label" style="display:none;">Overzicht onderdelen en bijhorend kleur</label>
+    <ul id="stackList"></ul>
+
+    <!-- DAK -->
+    <label>Dak</label>
+    <select id="dakSelect">
+        <option value="none">Geen</option>
+    	<option value="Plat dak.svg">Plat dak</option>
+    	<option value="Chaletdak.svg">Chalet dak</option>
+    </select>
+
+<div id="dakKleurWrapper">
+
+    <label>Dak kleur</label>
+    <select id="dakKleur">
+        <option value="wit">Wit</option>
+        <option value="geel" selected>Geel</option>
+        <option value="rood">Rood</option>
+        <option value="groen">Groen</option>
+        <option value="blauw">Blauw</option>
+    </select>
+
+    <label>Dakisolatie</label>
+    <select id="dakIsolatie">
+        <option value="nee" selected>Nee</option>
+        <option value="ja">Ja</option>
+    </select>
+
+</div>
+
+    <!-- VISUAL -->
+    <div class="visual-container">
+    <div id="visualiser"></div>
+    </div>
+
+</div>
+
+<div class="prijsblok">
+    <h2>Prijs huidige configuratie: € <span id="prijs">0</span></h2>
+</div>
+
+<button id="addToOrder" class="btn-primary hidden">
+    Configuratie toevoegen
+</button>
+
+<div id="bestellingBlok" class="hidden">
+    <h3 id="bestellingTitel" class="hidden overzicht-titel">Uw selectie</h3>
+
+    <div id="bestellingLijst"></div>
+    <div id="bestellingTotaal"></div>
+
+    <div id="actieBlok">
+
+        <div class="actie-primaire">
+            <button id="bevestigBestelling" class="btn-primary">
+                Bestelling bevestigen
+            </button>
+
+            <p class="actie-tekst">
+                U ontvangt binnen de 5 werkdagen een orderbevestiging met levertermijn.<br>
+                Prijzen inclusief btw. Transport niet inbegrepen.<br>
+                Levering in overleg te bepalen.<br>
+                De bestelling wordt definitief na ontvangst van het voorschot zoals vermeld in de orderbevestiging.
+            </p>
+        </div>
+
+        <div class="actie-secundaire">
+            <button id="stelVraag" class="btn-outline">
+                Stel uw vraag
+            </button>
+
+            <p class="actie-tekst">
+                Twijfelt u over de samenstelling of wenst u advies op maat?<br>
+                Wij bekijken uw configuratie en nemen persoonlijk contact met u op.
+            </p>
+        </div>
+
+    </div>
+
+    <div id="formulierBlok" class="hidden">
+
+        <h3 id="formulierTitel">Contactgegevens</h3>
+
+        <form id="contactForm">
+
+            <input type="hidden" id="formulierType" name="type">
+
+            <label>Naam</label>
+            <input type="text" id="naam" required>
+
+            <label>E-mail</label>
+            <input type="email" id="email" required>
+
+            <div class="form-group">
+                <label for="telefoon">Telefoonnummer</label>
+                <input type="tel" id="telefoon" required>
+            </div>
+
+            <div class="form-group">
+                <label for="straat">Straat + nummer</label>
+                <input type="text" id="straat" required>
+            </div>
+
+            <div class="form-group">
+                <label for="postcode">Postcode</label>
+                <input type="text" id="postcode" required>
+            </div>
+
+            <div class="form-group">
+                <label for="gemeente">Gemeente</label>
+                <input type="text" id="gemeente" required>
+            </div>
+
+            <div class="form-group factuur-group">
+                <label for="factuur">Factuur gewenst</label>
+                <input type="checkbox" id="factuur">
+            </div>
+
+            <div class="form-group hidden" id="btwBlok">
+                <label for="btw">BTW-nummer (optioneel)</label>
+                <input type="text" id="btw">
+            </div>
+
+            <div class="form-group">
+                <label for="opmerking" id="opmerkingLabel">Opmerking</label>
+                <textarea id="opmerking"></textarea>
+            </div>
+
+            <button type="submit" class="btn-primary">
+                Verzenden
+            </button>
+
+        </form>
+
+    </div>
+</section>
+
+<script src="html2canvas.min.js"></script>
+<script src="configurator.js"></script>
+
+<script>
+    const links = document.querySelectorAll(".nav-link");
+    const currentPage = window.location.pathname.split("/").pop();
+
+    links.forEach(link => {
+        const page = link.dataset.page;
+
+        if (
+            (currentPage === "" && page === "home") ||
+            (currentPage === "index.html" && page === "home") ||
+            (currentPage === "configurator.html" && page === "configurator")
+        ) {
+            link.classList.add("active");
+        }
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,128 @@
+[
+  {
+    "Onderdeel": "Bodem",
+    "Optie": "Basis",
+    "Variant": "-",
+    "Prijs": "45"
+  },
+  {
+    "Onderdeel": "Bodem",
+    "Optie": "Propolis",
+    "Variant": "-",
+    "Prijs": "4"
+  },
+  {
+    "Onderdeel": "Broedbak",
+    "Optie": "Basis",
+    "Variant": "-",
+    "Prijs": "38"
+  },
+  {
+    "Onderdeel": "Broedbak",
+    "Optie": "Handvaten",
+    "Variant": "-",
+    "Prijs": "6"
+  },
+  {
+    "Onderdeel": "Broedbak",
+    "Optie": "Propolis",
+    "Variant": "-",
+    "Prijs": "5"
+  },
+  {
+    "Onderdeel": "Broedbak",
+    "Optie": "Hoekbescherming",
+    "Variant": "-",
+    "Prijs": "7"
+  },
+  {
+    "Onderdeel": "Broedbak",
+    "Optie": "Ramen",
+    "Variant": "Nee",
+    "Prijs": "0"
+  },
+  {
+    "Onderdeel": "Broedbak",
+    "Optie": "Ramen",
+    "Variant": "Ja",
+    "Prijs": "18"
+  },
+  {
+    "Onderdeel": "Broedbak",
+    "Optie": "Ramen",
+    "Variant": "Waswafels",
+    "Prijs": "25"
+  },
+  {
+    "Onderdeel": "Honingzolder",
+    "Optie": "Basis",
+    "Variant": "-",
+    "Prijs": "32"
+  },
+  {
+    "Onderdeel": "Honingzolder",
+    "Optie": "Handvaten",
+    "Variant": "-",
+    "Prijs": "6"
+  },
+  {
+    "Onderdeel": "Honingzolder",
+    "Optie": "Propolis",
+    "Variant": "-",
+    "Prijs": "3"
+  },
+  {
+    "Onderdeel": "Honingzolder",
+    "Optie": "Hoekbescherming",
+    "Variant": "-",
+    "Prijs": "7"
+  },
+  {
+    "Onderdeel": "Honingzolder",
+    "Optie": "Ramen",
+    "Variant": "Nee",
+    "Prijs": "0"
+  },
+  {
+    "Onderdeel": "Honingzolder",
+    "Optie": "Ramen",
+    "Variant": "Ja",
+    "Prijs": "16"
+  },
+  {
+    "Onderdeel": "Honingzolder",
+    "Optie": "Ramen",
+    "Variant": "Waswafels",
+    "Prijs": "22"
+  },
+  {
+    "Onderdeel": "Koninginnenrooster",
+    "Optie": "Basis",
+    "Variant": "-",
+    "Prijs": "12"
+  },
+  {
+    "Onderdeel": "Platdak",
+    "Optie": "Basis",
+    "Variant": "-",
+    "Prijs": "22"
+  },
+  {
+    "Onderdeel": "Platdak",
+    "Optie": "Isolatie",
+    "Variant": "-",
+    "Prijs": "8"
+  },
+  {
+    "Onderdeel": "Chaletdak",
+    "Optie": "Basis",
+    "Variant": "-",
+    "Prijs": "35"
+  },
+  {
+    "Onderdeel": "Chaletdak",
+    "Optie": "Isolatie",
+    "Variant": "-",
+    "Prijs": "10"
+  }
+]
