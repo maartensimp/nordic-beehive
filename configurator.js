@@ -3,7 +3,7 @@ let stack = [];
 let bestelling = [];
 let configuratieGewijzigd = false;
 
-const IBAN = "BE00 0000 0000 0000";
+const IBAN = "BE00 0000 0000 0001";
 const BEDRIJFSNAAM = "Nordic Beehive";
 const VOORSCHOT_PERCENTAGE = 0.30;
 
@@ -246,6 +246,7 @@ function updateUI() {
                     <option value="rood" ${item.kleur === "rood" ? "selected" : ""}>Rood</option>
                     <option value="groen" ${item.kleur === "groen" ? "selected" : ""}>Groen</option>
                     <option value="blauw" ${item.kleur === "blauw" ? "selected" : ""}>Blauw</option>
+                    <option value="roze" ${item.kleur === "roze" ? "selected" : ""}>Roze</option>
                 </select>
             `;
         }
@@ -340,7 +341,8 @@ function loadSVG(svgFile, kleur, plankKleur = null) {
         rood: "#852C1E",
         wit: "#FFFFFF",
         blauw: "#4185AA",
-        groen: "#7DA26F"
+        groen: "#7DA26F",
+        roze: "#B78893"
     };
 
     const shapes = svgElement.querySelectorAll("*");
@@ -1179,3 +1181,4 @@ window.addEventListener("beforeunload", function (e) {
     e.preventDefault();
     e.returnValue = "";
 });
+
