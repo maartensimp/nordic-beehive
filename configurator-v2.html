@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>Configureer uw kast – Nordic Beehive</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-configurator-v2.css">
+    <link rel="icon" href="logo.png">
+
+    <!-- Formulier altijd verborgen bij laden — vóór enig JS -->
+    <style>
+        #formulierBlok { display: none; }
+        /* Snapshot helper: buiten viewport zodat zoom-flash niet zichtbaar is */
+        #snapshotHelper { position:fixed; left:-9999px; top:0; visibility:hidden; pointer-events:none; zoom:1; }
+    </style>
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="container header-inner">
+        <a href="index.html">
+            <img src="logo.png" alt="Nordic Beehive" class="site-logo">
+        </a>
+        <nav>
+            <a href="index.html"           class="nav-link" data-page="home">Home</a>
+            <a href="bijenkasten.html"     class="nav-link" data-page="bijenkasten">Bijenkasten</a>
+            <a href="hoornaars.html"       class="nav-link" data-page="hoornaars">Bescherming hoornaars</a>
+            <a href="configurator-v2.html" class="nav-link" data-page="configurator">Stel uw bestelling samen</a>
+            <a href="contact.html"         class="nav-link" data-page="contact">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<div class="configurator-page-wrapper">
+
+    <h1>Stel uw bestelling samen</h1>
+    <p class="page-subtitle">Configureer uw bijenkast en voeg beschermingsoplossingen toe. Alles in één overzicht. Vul hieronder uw wensen in en we bevestigen de details bij uw orderbevestiging.</p>
+
+    <!-- TAB-NAVIGATIE (6): geen nummers -->
+    <div class="config-tabs">
+        <button class="config-tab active" data-tab="kasten">Bijenkast</button>
+        <button class="config-tab" data-tab="bescherming">Bescherming tegen hoornaars</button>
+    </div>
+
+    <!-- TAB PANEEL: BIJENKAST -->
+    <div id="tab-kasten" class="tab-paneel tab-paneel-active">
+
+    <div class="config-layout">
+
+        <!-- ══ LINKERKOLOM ══ -->
+        <div class="config-left">
+
+            <!-- STAP 1 – BODEM -->
+            <div class="config-panel">
+                <h2 class="panel-title"><span class="step-badge">1</span> Bodem</h2>
+
+                <div class="field-group">
+                    <label for="bodemSelect">Bodem toevoegen</label>
+                    <select id="bodemSelect">
+                        <option value="none">Nee</option>
+                        <option value="Bodem.svg">Ja</option>
+                    </select>
+                </div>
+
+                <div id="bodemKleurWrapper">
+                    <div class="field-divider"></div>
+                    <div class="options-grid">
+                        <div class="field-group">
+                            <label for="bodemKleur">Kleur bodem</label>
+                            <select id="bodemKleur">
+                                <option value="wit">Norrland Vit (Wit)</option>
+                                <option value="geel" selected>Skåne Gul (Geel)</option>
+                                <option value="rood">Falu Röd (Rood)</option>
+                                <option value="groen">Dalarna Grön (Groen)</option>
+                                <option value="blauw">Siljan Blå (Blauw)</option>
+                                <option value="roze">Småland Rosé (Roze)</option>
+                            </select>
+                        </div>
+                        <div class="field-group">
+                            <label for="plankKleur">Kleur vliegplank</label>
+                            <select id="plankKleur">
+                                <option value="wit" selected>Norrland Vit (Wit)</option>
+                                <option value="geel">Skåne Gul (Geel)</option>
+                                <option value="rood">Falu Röd (Rood)</option>
+                                <option value="groen">Dalarna Grön (Groen)</option>
+                                <option value="blauw">Siljan Blå (Blauw)</option>
+                                <option value="roze">Småland Rosé (Roze)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="field-group">
+                        <label for="bodemPropolis">Propolis binnenzijde</label>
+                        <select id="bodemPropolis">
+                            <option value="nee">Nee</option>
+                            <option value="ja">Ja (+ € 4)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STAP 2 – MIDDEN -->
+            <div class="config-panel">
+                <h2 class="panel-title"><span class="step-badge">2</span> Middenonderdelen</h2>
+
+                <div class="add-buttons">
+                    <button class="add-btn" onclick="addModule('Broedbak basis.svg')">
+                        <span class="add-icon">＋</span>Broedbak
+                    </button>
+                    <button class="add-btn" onclick="addModule('Honingzolder basis.svg')">
+                        <span class="add-icon">＋</span>Honingzolder
+                    </button>
+                    <button class="add-btn" onclick="addModule('Koninginnenrooster.svg')">
+                        <span class="add-icon">＋</span>Rooster
+                    </button>
+                </div>
+
+                <label class="normal-label" style="display:none;">Overzicht onderdelen en kleur</label>
+                <ul id="stackList"></ul>
+
+                <div id="moduleOpties">
+                    <div class="field-divider"></div>
+                    <div class="options-grid">
+                        <div class="field-group">
+                            <label for="modulePropolis">Propolis binnenzijde</label>
+                            <select id="modulePropolis">
+                                <option value="nee">Nee</option>
+                                <option value="ja">Ja (+ € 5 / stuk)</option>
+                            </select>
+                        </div>
+                        <div class="field-group">
+                            <label for="handvaten">Metalen handvaten</label>
+                            <select id="handvaten">
+                                <option value="nee">Nee</option>
+                                <option value="ja">Ja (+ € 6 / stuk)</option>
+                            </select>
+                        </div>
+                        <div class="field-group">
+                            <label for="hoekbescherming">Hoekbescherming</label>
+                            <select id="hoekbescherming">
+                                <option value="nee">Nee</option>
+                                <option value="ja">Ja (+ € 7 / stuk)</option>
+                            </select>
+                        </div>
+                        <div class="field-group">
+                            <label for="ramen">Gemonteerde ramen</label>
+                            <select id="ramen">
+                                <option value="nee">Nee</option>
+                                <option value="ja">Ja (+ € 18 / stuk)</option>
+                                <option value="was">Ja + waswafels (+ € 25 / stuk)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STAP 3 – DAK -->
+            <div class="config-panel">
+                <h2 class="panel-title"><span class="step-badge">3</span> Dak</h2>
+
+                <div class="field-group">
+                    <label for="dakSelect">Type dak</label>
+                    <select id="dakSelect">
+                        <option value="none">Geen dak</option>
+                        <option value="Plat dak.svg">Plat dak</option>
+                        <option value="Chaletdak.svg">Chalet dak</option>
+                    </select>
+                </div>
+
+                <div id="dakKleurWrapper">
+                    <div class="field-divider"></div>
+                    <div class="options-grid">
+                        <div class="field-group">
+                            <label for="dakKleur">Kleur dak</label>
+                            <select id="dakKleur">
+                                <option value="wit">Norrland Vit (Wit)</option>
+                                <option value="geel" selected>Skåne Gul (Geel)</option>
+                                <option value="rood">Falu Röd (Rood)</option>
+                                <option value="groen">Dalarna Grön (Groen)</option>
+                                <option value="blauw">Siljan Blå (Blauw)</option>
+                                <option value="roze">Småland Rosé (Roze)</option>
+                            </select>
+                        </div>
+                        <div class="field-group">
+                            <label for="dakIsolatie">Dakisolatie</label>
+                            <select id="dakIsolatie">
+                                <option value="nee">Nee</option>
+                                <option value="ja">Ja (+ € 8)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /config-left -->
+
+        <!-- ══ RECHTERKOLOM ══ -->
+        <div class="config-right">
+            <div class="preview-card">
+                <p class="preview-title">Uw configuratie</p>
+                <div class="visual-container">
+                    <div id="visualiser"></div>
+                </div>
+                <div class="price-block">
+                    <div class="price-label">Totaalprijs incl. btw</div>
+                    <div class="price-amount">
+                        <span class="currency">€</span><span id="prijs">0</span>
+                    </div>
+                    <div class="price-note">Transport niet inbegrepen</div>
+                </div>
+                <button id="addToOrder" class="hidden">Configuratie toevoegen ›</button>
+            </div>
+        </div>
+
+    </div><!-- /config-layout -->
+
+    </div><!-- /tab-paneel kasten -->
+
+    <!-- TAB PANEEL: BESCHERMING TEGEN HOORNAARS -->
+    <div id="tab-bescherming" class="tab-paneel">
+        <div class="config-layout">
+            <div class="config-left">
+
+                <!-- STAP 1 – KOLDO BELASKO -->
+                <div class="config-panel">
+                    <h2 class="panel-title"><span class="step-badge">1</span> Koldo Belasko</h2>
+                    <p class="ah-product-beschrijving">Mechanische trechterval die hoornaars aantrekt en binnenleidt. Hoornaars kunnen nadien niet meer ontsnappen. Gepositioneerd voor de vliegopening van de bijenkasten. Extra kolom per 5m horizontale buis.</p>
+
+                    <div class="belasko-illustratie">
+                        <img src="Koldo_Balasko.png" alt="Schematische weergave Koldo Belasko met aanduiding hoogte links, hoogte rechts en lengte">
+                    </div>
+
+                    <div class="field-divider"></div>
+                    <div class="options-grid">
+                        <div class="field-group">
+                            <label for="belasko-materiaal">Materiaal</label>
+                            <select id="belasko-materiaal">
+                                <option value="inox">Inox</option>
+                                <option value="gegalvaniseerd">Gegalvaniseerd staal</option>
+                            </select>
+                        </div>
+                        <div class="field-group">
+                            <label for="belasko-voet">Verzwaarde voet</label>
+                            <select id="belasko-voet">
+                                <option value="nee">Nee</option>
+                                <option value="ja">Ja</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="field-divider"></div>
+                    <p class="belasko-groep-label">Afmetingen</p>
+                    <div class="options-grid">
+                        <div class="field-group">
+                            <label for="belasko-hoogte-links">Hoogte links: <span class="range-val" id="belasko-hoogte-links-val">50</span> cm</label>
+                            <input type="range" id="belasko-hoogte-links" min="30" max="120" step="5" value="50"
+                                   oninput="document.getElementById('belasko-hoogte-links-val').textContent=this.value">
+                        </div>
+                        <div class="field-group">
+                            <label for="belasko-hoogte-rechts">Hoogte rechts: <span class="range-val" id="belasko-hoogte-rechts-val">50</span> cm</label>
+                            <input type="range" id="belasko-hoogte-rechts" min="30" max="120" step="5" value="50"
+                                   oninput="document.getElementById('belasko-hoogte-rechts-val').textContent=this.value">
+                        </div>
+                        <div class="field-group">
+                            <label for="belasko-lengte">Lengte: <span class="range-val" id="belasko-lengte-val">200</span> cm
+                                <span class="range-kolommen" id="belasko-kolommen-label"> — 2 kolommen</span>
+                            </label>
+                            <input type="range" id="belasko-lengte" min="100" max="2000" step="20" value="200"
+                                   oninput="updateBelaskoLengte(this.value)">
+                        </div>
+                    </div>
+
+                    <p class="belasko-hoogte-toelichting">Hoogte links en rechts = hoogte van de vliegplank gemeten vanaf het maaiveld.</p>
+
+                    <div class="ah-toevoegen-rij">
+                        <button class="add-btn add-btn-ah" onclick="voegAHToe('belasko')">
+                            <span class="add-icon">＋</span>TOEVOEGEN AAN SELECTIE
+                        </button>
+                    </div>
+                </div>
+
+                <!-- STAP 2 – ELEKTRISCHE HARP -->
+                <div class="config-panel">
+                    <h2 class="panel-title"><span class="step-badge">2</span> Elektrische harp</h2>
+                    <p class="ah-product-beschrijving">Actieve verdedigingslijn met parallelle draden voor de kast. Veilig voor bijen, effectief tegen hoornaars. Regelmatig verplaatsen voor optimale werking.</p>
+
+                    <div class="ah-svg-illustratie">
+                        <svg id="harp-svg-inline" width="370" height="740" viewBox="0 0 370 740" fill="none" xmlns="http://www.w3.org/2000/svg" style="max-height:220px; width:auto;">
+                        <g clip-path="url(#harp-clip)">
+                        <rect width="370" height="740" fill="#FDF7F0"/>
+                        <!-- Opvangbak — verborgen tenzij gekozen -->
+                        <g id="harp-opvangbak-svg" display="none">
+                          <rect x="31.5" y="691.5" width="307" height="47" fill="#D9D9D9" stroke="#28445A" stroke-width="3"/>
+                        </g>
+                        <!-- Schraag: scharnierpin + X-poten -->
+                        <circle cx="185" cy="385" r="13.5" fill="#D9D9D9" stroke="#28445A" stroke-width="3"/>
+                        <rect x="1.17084" y="-1.76894" width="29" height="797" transform="matrix(0.979925 -0.199368 -0.199368 -0.979925 344.165 787.051)" fill="#F4C678" stroke="#28445A" stroke-width="3"/>
+                        <rect x="1.17084" y="-1.76894" width="29" height="55" transform="matrix(0.979925 -0.199368 -0.199368 -0.979925 196.234 59.9465)" fill="#F4C678" stroke="#28445A" stroke-width="3"/>
+                        <line x1="336" y1="738.5" x2="365" y2="738.5" stroke="#28445A" stroke-width="3"/>
+                        <rect x="24.1868" y="788.551" width="29" height="797" transform="rotate(-168.5 24.1868 788.551)" fill="#F4C678" stroke="#28445A" stroke-width="3"/>
+                        <rect x="172.187" y="61.4465" width="29" height="55" transform="rotate(-168.5 172.187 61.4465)" fill="#F4C678" stroke="#28445A" stroke-width="3"/>
+                        <line y1="-1.5" x2="29" y2="-1.5" transform="matrix(-1 0 0 1 34 740)" stroke="#28445A" stroke-width="3"/>
+                        <!-- Horizontale verbindingsbalk -->
+                        <rect x="90.5" y="371.5" width="187" height="13" fill="#D9D9D9" stroke="#28445A" stroke-width="3"/>
+                        <!-- PV-paneel (Rectangle 8 + Lines 5-8) — verborgen tenzij gekozen -->
+                        <g id="harp-pv-svg" display="none">
+                          <rect x="106.5" y="12.5" width="157" height="237" fill="#1B2F44" stroke="#1B2F44" stroke-width="3"/>
+                          <line x1="185.5" y1="11" x2="185.5" y2="250" stroke="#4a6fa5" stroke-width="2"/>
+                          <line x1="105.009" y1="128.5" x2="265.009" y2="129.5" stroke="#4a6fa5" stroke-width="2"/>
+                          <line x1="104.009" y1="69.5" x2="264.009" y2="70.5" stroke="#4a6fa5" stroke-width="2"/>
+                          <line x1="105.009" y1="194.5" x2="265.009" y2="195.5" stroke="#4a6fa5" stroke-width="2"/>
+                        </g>
+                        </g>
+                        <defs><clipPath id="harp-clip"><rect width="370" height="740" fill="white"/></clipPath></defs>
+                        </svg>
+                    </div>
+
+                    <div class="field-divider"></div>
+                    <div class="options-grid">
+                        <div class="field-group">
+                            <label for="harp-opvangbak">Opvangbak</label>
+                            <select id="harp-opvangbak" onchange="updateHarpSVG()">
+                                <option value="nee">Nee</option>
+                                <option value="ja">Ja</option>
+                            </select>
+                        </div>
+                        <div class="field-group">
+                            <label for="harp-pv">PV-paneel (autonoom)</label>
+                            <select id="harp-pv" onchange="updateHarpSVG()">
+                                <option value="nee">Nee</option>
+                                <option value="ja">Ja</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="ah-toevoegen-rij">
+                        <button class="add-btn add-btn-ah" onclick="voegAHToe('harp')">
+                            <span class="add-icon">＋</span>TOEVOEGEN AAN SELECTIE
+                        </button>
+                    </div>
+                </div>
+
+                <!-- STAP 3 – KOOLMEZENKAST -->
+                <div class="config-panel">
+                    <h2 class="panel-title"><span class="step-badge">3</span> Koolmezenkast</h2>
+                    <p class="ah-product-beschrijving">Ecologische ondersteuning. Afgewerkt in <a href="bijenkasten.html#kleuren">dezelfde Zweedse kleuren</a> als uw bijenkast. Draagt bij aan een natuurlijk evenwicht in uw tuin.</p>
+
+                    <div class="ah-svg-illustratie">
+                        <svg id="mezenkast-svg" width="160" height="400" viewBox="0 0 160 400" fill="none" xmlns="http://www.w3.org/2000/svg" style="max-height:220px; width:auto;">
+                        <g clip-path="url(#mezen-clip)">
+                        <!-- Achtergrond: zelfde kleur als het vak -->
+                        <rect id="mezen-bg" width="160" height="400" fill="#FDF7F0"/>
+                        <g id="mezen-kast-groep">
+                          <rect x="21.5" y="1.5" width="117" height="397" fill="#E5B75C" stroke="#28445A" stroke-width="3"/>
+                          <rect x="21.5" y="116.5" width="117" height="237" fill="#E5B75C" stroke="#28445A" stroke-width="3"/>
+                          <rect x="1.5" y="110.5" width="20" height="243" fill="#E5B75C" stroke="#28445A" stroke-width="3"/>
+                          <rect x="138.5" y="110.5" width="20" height="243" fill="#E5B75C" stroke="#28445A" stroke-width="3"/>
+                        </g>
+                        <g id="mezen-dak-groep">
+                          <rect x="1.5" y="49.5" width="157" height="97" fill="#F0EDED" stroke="#28445A" stroke-width="3"/>
+                        </g>
+                        <circle cx="80" cy="192" r="14.5" fill="#D9D9D9" stroke="#28445A" stroke-width="3"/>
+                        <circle cx="80" cy="17" r="1.5" fill="#D9D9D9" stroke="#28445A" stroke-width="3"/>
+                        <circle cx="80" cy="383" r="1.5" fill="#D9D9D9" stroke="#28445A" stroke-width="3"/>
+                        </g>
+                        <defs><clipPath id="mezen-clip"><rect width="160" height="400" fill="white"/></clipPath></defs>
+                        </svg>
+                    </div>
+
+                    <div class="field-divider"></div>
+                    <div class="options-grid">
+                        <div class="field-group">
+                            <label for="mezenkast-kleur">Kleur kast</label>
+                            <select id="mezenkast-kleur" onchange="updateMezenkastSVG()">
+                                <option value="geel">Skåne Gul (Geel)</option>
+                                <option value="groen">Dalarna Grön (Groen)</option>
+                                <option value="blauw">Siljan Blå (Blauw)</option>
+                                <option value="rood">Falu Röd (Rood)</option>
+                                <option value="wit">Norrland Vit (Wit)</option>
+                                <option value="roze">Småland Rosé (Roze)</option>
+                            </select>
+                        </div>
+                        <div class="field-group">
+                            <label for="mezenkast-kleur-dak">Kleur dak</label>
+                            <select id="mezenkast-kleur-dak" onchange="updateMezenkastSVG()">
+                                <option value="wit">Norrland Vit (Wit)</option>
+                                <option value="zelfde">Zelfde als kast</option>
+                                <option value="geel">Skåne Gul (Geel)</option>
+                                <option value="groen">Dalarna Grön (Groen)</option>
+                                <option value="blauw">Siljan Blå (Blauw)</option>
+                                <option value="rood">Falu Röd (Rood)</option>
+                                <option value="roze">Småland Rosé (Roze)</option>
+                            </select>
+                        </div>
+                        <div class="field-group">
+                            <label for="mezenkast-bevestiging">Bevestiging</label>
+                            <select id="mezenkast-bevestiging">
+                                <option value="geen">Geen</option>
+                                <option value="aluminium">Aluminium nagels</option>
+                                <option value="boomband">Boomband</option>
+                            </select>
+                        </div>
+                        <div class="field-group">
+                            <label for="mezenkast-bollen">Koolmezenbollen (5 st.)</label>
+                            <select id="mezenkast-bollen">
+                                <option value="nee">Nee</option>
+                                <option value="ja">Ja, bijbestellen</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="ah-toevoegen-rij">
+                        <button class="add-btn add-btn-ah" onclick="voegAHToe('mezenkast')">
+                            <span class="add-icon">＋</span>TOEVOEGEN AAN SELECTIE
+                        </button>
+                    </div>
+                </div>
+
+                <!-- STAP 4 – SELECTIEVE VAL -->
+                <div class="config-panel">
+                    <h2 class="panel-title"><span class="step-badge">4</span> Selectieve val</h2>
+                    <p class="ah-product-beschrijving">Val die verspreid in de tuin geplaatst wordt om hoornaars af te vangen. Dankzij de geëxpandeerde kleikorrels kunnen andere insecten de val verlaten, zodat enkel hoornaars gevangen blijven.</p>
+
+                    <div class="ah-svg-illustratie">
+                        <svg id="val-svg" width="340" height="220" viewBox="0 0 340 220" fill="none" xmlns="http://www.w3.org/2000/svg" style="max-height:180px; width:auto;">
+                        <g clip-path="url(#val-clip)">
+                        <rect width="340" height="220" fill="#FDF7F0"/>
+                        <!-- Deksel -->
+                        <rect x="30" y="30" width="280" height="28" rx="3" fill="#D9D9D9" stroke="#28445A" stroke-width="3"/>
+                        <!-- Doos -->
+                        <rect x="30" y="55" width="280" height="140" rx="3" fill="#EAF3FA" stroke="#28445A" stroke-width="3"/>
+                        <!-- Lokvloeistof — verborgen by default -->
+                        <g id="val-lokvloeistof-svg" display="none">
+                          <rect x="32" y="179" width="276" height="14" rx="2" fill="#E74C3C" opacity="0.85"/>
+                        </g>
+                        <!-- Kleikorrels — verborgen by default -->
+                        <g id="val-kleikorrels-svg" display="none">
+                          <ellipse cx="50"  cy="179" rx="7" ry="5" fill="#8B6340" stroke="#5C3D1E" stroke-width="1"/>
+                          <ellipse cx="64"  cy="177" rx="6" ry="4.5" fill="#9E7050" stroke="#5C3D1E" stroke-width="1"/>
+                          <ellipse cx="78"  cy="179" rx="7" ry="5" fill="#7A5530" stroke="#5C3D1E" stroke-width="1"/>
+                          <ellipse cx="92"  cy="177" rx="6" ry="4.5" fill="#8B6340" stroke="#5C3D1E" stroke-width="1"/>
+                          <ellipse cx="106" cy="179" rx="7" ry="5" fill="#A07858" stroke="#5C3D1E" stroke-width="1"/>
+                          <ellipse cx="120" cy="177" rx="6" ry="4.5" fill="#8B6340" stroke="#5C3D1E" stroke-width="1"/>
+                          <ellipse cx="134" cy="179" rx="7" ry="5" fill="#7A5530" stroke="#5C3D1E" stroke-width="1"/>
+                          <ellipse cx="148" cy="177" rx="6" ry="4.5" fill="#9E7050" stroke="#5C3D1E" stroke-width="1"/>
+                          <ellipse cx="162" cy="179" rx="7" ry="5" fill="#8B6340" stroke="#5C3D1E" stroke-width="1"/>
+                          <ellipse cx="176" cy="177" rx="6" ry="4.5" fill="#A07858" stroke="#5C3D1E" stroke-width="1"/>
+                          <ellipse cx="190" cy="179" rx="7" ry="5" fill="#7A5530" stroke="#5C3D1E" stroke-width="1"/>
+                          <ellipse cx="204" cy="177" rx="6" ry="4.5" fill="#8B6340" stroke="#5C3D1E" stroke-width="1"/>
+                          <ellipse cx="218" cy="179" rx="7" ry="5" fill="#9E7050" stroke="#5C3D1E" stroke-width="1"/>
+                          <ellipse cx="232" cy="177" rx="6" ry="4.5" fill="#8B6340" stroke="#5C3D1E" stroke-width="1"/>
+                          <ellipse cx="246" cy="179" rx="7" ry="5" fill="#A07858" stroke="#5C3D1E" stroke-width="1"/>
+                          <ellipse cx="260" cy="177" rx="6" ry="4.5" fill="#7A5530" stroke="#5C3D1E" stroke-width="1"/>
+                          <ellipse cx="274" cy="179" rx="7" ry="5" fill="#8B6340" stroke="#5C3D1E" stroke-width="1"/>
+                          <ellipse cx="288" cy="177" rx="6" ry="4.5" fill="#9E7050" stroke="#5C3D1E" stroke-width="1"/>
+                          <ellipse cx="57"  cy="172" rx="6" ry="4.5" fill="#9E7050" stroke="#5C3D1E" stroke-width="1"/>
+                          <ellipse cx="71"  cy="170" rx="6" ry="4.5" fill="#8B6340" stroke="#5C3D1E" stroke-width="1"/>
+                          <ellipse cx="85"  cy="172" rx="6" ry="4.5" fill="#A07858" stroke="#5C3D1E" stroke-width="1"/>
+                          <ellipse cx="99"  cy="170" rx="6" ry="4.5" fill="#7A5530" stroke="#5C3D1E" stroke-width="1"/>
+                          <ellipse cx="113" cy="172" rx="6" ry="4.5" fill="#8B6340" stroke="#5C3D1E" stroke-width="1"/>
+                          <ellipse cx="127" cy="170" rx="6" ry="4.5" fill="#9E7050" stroke="#5C3D1E" stroke-width="1"/>
+                          <ellipse cx="141" cy="172" rx="6" ry="4.5" fill="#8B6340" stroke="#5C3D1E" stroke-width="1"/>
+                          <ellipse cx="155" cy="170" rx="6" ry="4.5" fill="#A07858" stroke="#5C3D1E" stroke-width="1"/>
+                          <ellipse cx="169" cy="172" rx="6" ry="4.5" fill="#7A5530" stroke="#5C3D1E" stroke-width="1"/>
+                          <ellipse cx="183" cy="170" rx="6" ry="4.5" fill="#8B6340" stroke="#5C3D1E" stroke-width="1"/>
+                          <ellipse cx="197" cy="172" rx="6" ry="4.5" fill="#9E7050" stroke="#5C3D1E" stroke-width="1"/>
+                          <ellipse cx="211" cy="170" rx="6" ry="4.5" fill="#8B6340" stroke="#5C3D1E" stroke-width="1"/>
+                          <ellipse cx="225" cy="172" rx="6" ry="4.5" fill="#A07858" stroke="#5C3D1E" stroke-width="1"/>
+                          <ellipse cx="239" cy="170" rx="6" ry="4.5" fill="#7A5530" stroke="#5C3D1E" stroke-width="1"/>
+                          <ellipse cx="253" cy="172" rx="6" ry="4.5" fill="#8B6340" stroke="#5C3D1E" stroke-width="1"/>
+                          <ellipse cx="267" cy="170" rx="6" ry="4.5" fill="#9E7050" stroke="#5C3D1E" stroke-width="1"/>
+                          <ellipse cx="281" cy="172" rx="6" ry="4.5" fill="#8B6340" stroke="#5C3D1E" stroke-width="1"/>
+                        </g>
+                        <!-- Trechters (altijd zichtbaar) -->
+                        <path d="M30 75 L105 113 L105 127 L30 165 Z" fill="#F7C112" stroke="#28445A" stroke-width="2.5" stroke-linejoin="round"/>
+                        <line x1="33" y1="86"  x2="47"  y2="86"  stroke="#28445A" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="10 5" stroke-dashoffset="0"/>
+                        <line x1="33" y1="93"  x2="61"  y2="93"  stroke="#28445A" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="10 5" stroke-dashoffset="-6"/>
+                        <line x1="33" y1="100" x2="75"  y2="100" stroke="#28445A" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="10 5" stroke-dashoffset="0"/>
+                        <line x1="33" y1="107" x2="89"  y2="107" stroke="#28445A" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="10 5" stroke-dashoffset="-6"/>
+                        <line x1="33" y1="114" x2="99"  y2="114" stroke="#28445A" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="10 5" stroke-dashoffset="0"/>
+                        <line x1="33" y1="121" x2="99"  y2="121" stroke="#28445A" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="10 5" stroke-dashoffset="-6"/>
+                        <line x1="33" y1="128" x2="99"  y2="128" stroke="#28445A" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="10 5" stroke-dashoffset="0"/>
+                        <line x1="33" y1="135" x2="85"  y2="135" stroke="#28445A" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="10 5" stroke-dashoffset="-6"/>
+                        <line x1="33" y1="142" x2="71"  y2="142" stroke="#28445A" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="10 5" stroke-dashoffset="0"/>
+                        <line x1="33" y1="149" x2="57"  y2="149" stroke="#28445A" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="10 5" stroke-dashoffset="-6"/>
+                        <line x1="33" y1="156" x2="43"  y2="156" stroke="#28445A" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="10 5" stroke-dashoffset="0"/>
+                        <path d="M310 75 L235 113 L235 127 L310 165 Z" fill="#F7C112" stroke="#28445A" stroke-width="2.5" stroke-linejoin="round"/>
+                        <line x1="292" y1="86"  x2="307" y2="86"  stroke="#28445A" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="10 5" stroke-dashoffset="0"/>
+                        <line x1="278" y1="93"  x2="307" y2="93"  stroke="#28445A" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="10 5" stroke-dashoffset="-6"/>
+                        <line x1="264" y1="100" x2="307" y2="100" stroke="#28445A" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="10 5" stroke-dashoffset="0"/>
+                        <line x1="250" y1="107" x2="307" y2="107" stroke="#28445A" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="10 5" stroke-dashoffset="-6"/>
+                        <line x1="241" y1="114" x2="307" y2="114" stroke="#28445A" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="10 5" stroke-dashoffset="0"/>
+                        <line x1="241" y1="121" x2="307" y2="121" stroke="#28445A" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="10 5" stroke-dashoffset="-6"/>
+                        <line x1="241" y1="128" x2="307" y2="128" stroke="#28445A" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="10 5" stroke-dashoffset="0"/>
+                        <line x1="254" y1="135" x2="307" y2="135" stroke="#28445A" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="10 5" stroke-dashoffset="-6"/>
+                        <line x1="268" y1="142" x2="307" y2="142" stroke="#28445A" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="10 5" stroke-dashoffset="0"/>
+                        <line x1="282" y1="149" x2="307" y2="149" stroke="#28445A" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="10 5" stroke-dashoffset="-6"/>
+                        <line x1="296" y1="156" x2="307" y2="156" stroke="#28445A" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="10 5" stroke-dashoffset="0"/>
+                        </g>
+                        <defs><clipPath id="val-clip"><rect width="340" height="220" fill="white"/></clipPath></defs>
+                        </svg>
+                    </div>
+
+                    <div class="field-divider"></div>
+                    <div class="options-grid">
+                        <div class="field-group">
+                            <label for="val-lokvloeistof">Lokvloeistof</label>
+                            <select id="val-lokvloeistof" onchange="updateValSVG()">
+                                <option value="nee">Nee</option>
+                                <option value="ja">Ja, bijbestellen</option>
+                            </select>
+                        </div>
+                        <div class="field-group">
+                            <label for="val-kleikorrels">Geëxpandeerde kleikorrels</label>
+                            <select id="val-kleikorrels" onchange="updateValSVG()">
+                                <option value="nee">Nee</option>
+                                <option value="ja">Ja, bijbestellen</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <p class="belasko-hoogte-toelichting">Lokvloeistof (100 ml) is een efficiënt concentraat dat u aanlengt tot 1 liter gebruiksklare lokvloeistof.</p>
+
+                    <div class="ah-toevoegen-rij">
+                        <button class="add-btn add-btn-ah" onclick="voegAHToe('selectieveval')">
+                            <span class="add-icon">＋</span>TOEVOEGEN AAN SELECTIE
+                        </button>
+                    </div>
+                </div>
+
+                <div class="ah-info-blok">
+                    <p>Prijzen worden op maat berekend en opgenomen in uw orderbevestiging.</p>
+                    <a href="hoornaars.html" class="ah-meer-link">Meer info over de oplossingen →</a>
+                </div>
+
+            </div><!-- /config-left -->
+
+            <!-- Geen sticky preview-card in AH-tab: selectie staat onderaan in bestelling-section -->
+
+        </div>
+    </div><!-- /tab-paneel bescherming -->
+
+    <!-- BESTELLINGSOVERZICHT KASTEN — door configurator.js beheerd -->
+    <div class="bestelling-section">
+        <div id="bestellingBlok" class="hidden">
+            <h3 id="bestellingTitel" class="hidden overzicht-titel">Uw selectie</h3>
+            <div id="bestellingLijst"></div>
+            <div id="bestellingTotaal"></div>
+        </div>
+    </div>
+
+    <!-- AH SELECTIE + ACTIEKNOPPEN — volledig buiten bestellingBlok -->
+    <div id="overallSelectieBlok" class="bestelling-section hidden">
+
+        <!-- AH items — geen titel, naadloos onder kastenselectie -->
+        <div id="ahSelectieBlok" class="hidden">
+            <div id="ahBestellingLijst"></div>
+        </div>
+
+        <!-- Actieknoppen -->
+        <div id="actieBlok">
+            <div class="actie-primaire" id="bevestigBlok" style="display:none;">
+                <button id="bevestigBestelling" class="btn-primary">Bestelling bevestigen</button>
+                <p class="actie-tekst">
+                    U ontvangt binnen de 5 werkdagen een orderbevestiging met levertermijn.<br>
+                    Prijzen inclusief btw. Transport niet inbegrepen.<br>
+                    De bestelling wordt definitief na ontvangst van het voorschot.
+                </p>
+            </div>
+            <div class="actie-secundaire">
+                <button id="stelVraag" class="btn-outline">Stel een vraag over uw selectie</button>
+                <p class="actie-tekst">
+                    Twijfelt u over de samenstelling of wenst u advies op maat?<br>
+                    Voor algemene vragen kunt u ook het <a href="contact.html">contactformulier</a> gebruiken.
+                </p>
+            </div>
+        </div>
+
+        <div id="formulierBlok">
+            <h3 id="formulierTitel">Contactgegevens</h3>
+            <form id="contactForm">
+                <input type="hidden" id="formulierType" name="type">
+                <input type="hidden" id="bestelInhoud" name="bestelling">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Naam</label>
+                        <input type="text" id="naam" name="naam" required>
+                    </div>
+                    <div class="form-group">
+                        <label>E-mail</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefoon">Telefoonnummer</label>
+                        <input type="tel" id="telefoon" name="telefoon" required>
+                    </div>
+                    <div class="form-group" id="straatGroup">
+                        <label for="straat">Straat + nummer</label>
+                        <input type="text" id="straat" name="straat">
+                    </div>
+                    <div class="form-group" id="postcodeGroup">
+                        <label for="postcode">Postcode</label>
+                        <input type="text" id="postcode" name="postcode">
+                    </div>
+                    <div class="form-group" id="gemeenteGroup">
+                        <label for="gemeente">Gemeente</label>
+                        <input type="text" id="gemeente" name="gemeente">
+                    </div>
+                </div>
+                <div class="form-group factuur-group" id="factuurGroup">
+                    <label for="factuur">
+                        <input type="checkbox" id="factuur"> Factuur gewenst
+                    </label>
+                </div>
+                <div class="form-group" id="btwBlok" style="display:none;">
+                    <label for="btw">BTW-nummer (optioneel)</label>
+                    <input type="text" id="btw" name="btw">
+                </div>
+                <div class="form-group">
+                    <label for="opmerking" id="opmerkingLabel">Opmerking</label>
+                    <textarea id="opmerking" name="opmerking"></textarea>
+                </div>
+                <button type="submit" id="verzendBtn" class="btn-primary">Verzenden</button>
+            </form>
+            <div id="bevestigingBericht" style="display:none;" class="bevestiging-bericht">
+                <p id="bevestigingTekst"></p>
+            </div>
+        </div>
+
+    </div><!-- /overallSelectieBlok -->
+
+</div><!-- /configurator-page-wrapper -->
+
+<footer class="footer">
+    <div class="container">© 2026 Nordic Beehive – Ambachtelijk gemaakt in België</div>
+</footer>
+
+<script src="html2canvas.min.js"></script>
+<script src="configurator.js"></script>
+
+<script>
+/* ═══════════════════════════════
+   KLEURMAP ZWEEDSE KLEUREN
+   (exacte waarden uit style-configurator-v2.css)
+═══════════════════════════════ */
+var kleurMap = {
+    geel:  "#E5B75C",
+    groen: "#7F9F63",
+    blauw: "#4C87A6",
+    rood:  "#8B2A1A",
+    wit:   "#F0EDED",
+    roze:  "#B78893"
+};
+
+/* Achtergrond van het illustratievak */
+var SVG_BG = "#FDF7F0";
+
+function getMezenKastKleur() {
+    var sel = document.getElementById("mezenkast-kleur");
+    return kleurMap[sel ? sel.value : "geel"] || "#E5B75C";
+}
+function getMezenDakKleur() {
+    var sel = document.getElementById("mezenkast-kleur-dak");
+    if (!sel) return "#F0EDED";
+    if (sel.value === "wit") return "#F0EDED";
+    if (sel.value === "zelfde") return getMezenKastKleur();
+    return kleurMap[sel.value] || "#F0EDED";
+}
+
+function updateMezenkastSVG() {
+    var kastKleur = getMezenKastKleur();
+    var dakKleur  = getMezenDakKleur();
+    /* Achtergrond = zelfde als vak */
+    var bg = document.getElementById("mezen-bg");
+    if (bg) bg.setAttribute("fill", SVG_BG);
+    /* Kast */
+    document.querySelectorAll("#mezen-kast-groep rect").forEach(function(r) {
+        r.setAttribute("fill", kastKleur);
+    });
+    /* Dak */
+    document.querySelectorAll("#mezen-dak-groep rect").forEach(function(r) {
+        r.setAttribute("fill", dakKleur);
+    });
+}
+
+function updateValSVG() {
+    var lok  = document.getElementById("val-lokvloeistof").value === "ja";
+    var klei = document.getElementById("val-kleikorrels").value === "ja";
+    var lokEl  = document.getElementById("val-lokvloeistof-svg");
+    var kleiEl = document.getElementById("val-kleikorrels-svg");
+    if (lokEl)  lokEl.setAttribute("display",  lok  ? "block" : "none");
+    if (kleiEl) kleiEl.setAttribute("display", klei ? "block" : "none");
+}
+
+function valSVGSnapshot(lok, klei) {
+    var lokStr  = lok  ? '<rect x="32" y="179" width="276" height="14" rx="2" fill="#E74C3C" opacity="0.85"/>' : '';
+    var kleiStr = klei ? '<ellipse cx="80" cy="179" rx="7" ry="5" fill="#8B6340" stroke="#5C3D1E" stroke-width="1"/><ellipse cx="120" cy="177" rx="6" ry="4.5" fill="#9E7050" stroke="#5C3D1E" stroke-width="1"/><ellipse cx="160" cy="179" rx="7" ry="5" fill="#7A5530" stroke="#5C3D1E" stroke-width="1"/><ellipse cx="200" cy="177" rx="6" ry="4.5" fill="#8B6340" stroke="#5C3D1E" stroke-width="1"/><ellipse cx="240" cy="179" rx="7" ry="5" fill="#A07858" stroke="#5C3D1E" stroke-width="1"/><ellipse cx="280" cy="177" rx="6" ry="4.5" fill="#8B6340" stroke="#5C3D1E" stroke-width="1"/><ellipse cx="100" cy="173" rx="6" ry="4.5" fill="#9E7050" stroke="#5C3D1E" stroke-width="1"/><ellipse cx="140" cy="171" rx="6" ry="4.5" fill="#7A5530" stroke="#5C3D1E" stroke-width="1"/><ellipse cx="180" cy="173" rx="6" ry="4.5" fill="#8B6340" stroke="#5C3D1E" stroke-width="1"/><ellipse cx="220" cy="171" rx="6" ry="4.5" fill="#A07858" stroke="#5C3D1E" stroke-width="1"/><ellipse cx="260" cy="173" rx="6" ry="4.5" fill="#8B6340" stroke="#5C3D1E" stroke-width="1"/>' : '';
+    var svgStr = '<svg width="340" height="220" viewBox="0 0 340 220" fill="none" xmlns="http://www.w3.org/2000/svg">'
+        + '<rect width="340" height="220" fill="#FDF7F0"/>'
+        + '<rect x="30" y="30" width="280" height="28" rx="3" fill="#D9D9D9" stroke="#28445A" stroke-width="3"/>'
+        + '<rect x="30" y="55" width="280" height="140" rx="3" fill="#EAF3FA" stroke="#28445A" stroke-width="3"/>'
+        + lokStr + kleiStr
+        + '<path d="M30 75 L105 113 L105 127 L30 165 Z" fill="#F7C112" stroke="#28445A" stroke-width="2.5" stroke-linejoin="round"/>'
+        + '<path d="M310 75 L235 113 L235 127 L310 165 Z" fill="#F7C112" stroke="#28445A" stroke-width="2.5" stroke-linejoin="round"/>'
+        + '</svg>';
+    return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgStr);
+}
+
+function updateHarpSVG() {
+    var opvangbak = document.getElementById("harp-opvangbak").value === "ja";
+    var pv        = document.getElementById("harp-pv").value === "ja";
+    var opvEl = document.getElementById("harp-opvangbak-svg");
+    var pvEl  = document.getElementById("harp-pv-svg");
+    if (opvEl) opvEl.setAttribute("display", opvangbak ? "block" : "none");
+    if (pvEl)  pvEl.setAttribute("display", pv ? "block" : "none");
+}
+
+/* SVG data-URL snapshot voor harp selectie-thumbnail */
+function harpSVGSnapshot(opvangbak, pv) {
+    var opvEl  = opvangbak ? '<rect x="31.5" y="691.5" width="307" height="47" fill="#D9D9D9" stroke="#28445A" stroke-width="3"/>' : '';
+    var pvEl   = pv ? '<rect x="106.5" y="12.5" width="157" height="237" fill="#1B2F44" stroke="#1B2F44" stroke-width="3"/>'
+                    + '<line x1="185.5" y1="11" x2="185.5" y2="250" stroke="#4a6fa5" stroke-width="2"/>'
+                    + '<line x1="105.009" y1="128.5" x2="265.009" y2="129.5" stroke="#4a6fa5" stroke-width="2"/>'
+                    + '<line x1="104.009" y1="69.5" x2="264.009" y2="70.5" stroke="#4a6fa5" stroke-width="2"/>'
+                    + '<line x1="105.009" y1="194.5" x2="265.009" y2="195.5" stroke="#4a6fa5" stroke-width="2"/>' : '';
+    var svgStr = '<svg width="370" height="740" viewBox="0 0 370 740" fill="none" xmlns="http://www.w3.org/2000/svg">'
+        + '<rect width="370" height="740" fill="' + SVG_BG + '"/>'
+        + opvEl
+        + '<circle cx="185" cy="385" r="13.5" fill="#D9D9D9" stroke="#28445A" stroke-width="3"/>'
+        + '<rect x="1.17084" y="-1.76894" width="29" height="797" transform="matrix(0.979925 -0.199368 -0.199368 -0.979925 344.165 787.051)" fill="#F4C678" stroke="#28445A" stroke-width="3"/>'
+        + '<rect x="1.17084" y="-1.76894" width="29" height="55" transform="matrix(0.979925 -0.199368 -0.199368 -0.979925 196.234 59.9465)" fill="#F4C678" stroke="#28445A" stroke-width="3"/>'
+        + '<rect x="24.1868" y="788.551" width="29" height="797" transform="rotate(-168.5 24.1868 788.551)" fill="#F4C678" stroke="#28445A" stroke-width="3"/>'
+        + '<rect x="172.187" y="61.4465" width="29" height="55" transform="rotate(-168.5 172.187 61.4465)" fill="#F4C678" stroke="#28445A" stroke-width="3"/>'
+        + '<rect x="90.5" y="371.5" width="187" height="13" fill="#D9D9D9" stroke="#28445A" stroke-width="3"/>'
+        + pvEl
+        + '</svg>';
+    return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgStr);
+}
+
+/* SVG data-URL snapshot voor mezenkast selectie-thumbnail */
+function mezenSVGSnapshot() {
+    var kastKleur = getMezenKastKleur();
+    var dakKleur  = getMezenDakKleur();
+    var svgStr = '<svg width="160" height="400" viewBox="0 0 160 400" fill="none" xmlns="http://www.w3.org/2000/svg">'
+        + '<rect width="160" height="400" fill="' + SVG_BG + '"/>'
+        + '<rect x="21.5" y="1.5" width="117" height="397" fill="' + kastKleur + '" stroke="#28445A" stroke-width="3"/>'
+        + '<rect x="21.5" y="116.5" width="117" height="237" fill="' + kastKleur + '" stroke="#28445A" stroke-width="3"/>'
+        + '<rect x="1.5" y="110.5" width="20" height="243" fill="' + kastKleur + '" stroke="#28445A" stroke-width="3"/>'
+        + '<rect x="138.5" y="110.5" width="20" height="243" fill="' + kastKleur + '" stroke="#28445A" stroke-width="3"/>'
+        + '<rect x="1.5" y="49.5" width="157" height="97" fill="' + dakKleur + '" stroke="#28445A" stroke-width="3"/>'
+        + '<circle cx="80" cy="192" r="14.5" fill="#D9D9D9" stroke="#28445A" stroke-width="3"/>'
+        + '</svg>';
+    return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgStr);
+}
+
+/* ═══════════════════════════════
+   NAV ACTIVE STATE
+═══════════════════════════════ */
+document.querySelectorAll(".nav-link").forEach(function(link) {
+    var page    = link.dataset.page;
+    var current = window.location.pathname.split("/").pop();
+    if ((current === "" && page === "home") ||
+        (current === "index.html" && page === "home") ||
+        (current === "configurator-v2.html" && page === "configurator")) {
+        link.classList.add("active");
+    }
+});
+
+/* ═══════════════════════════════
+   TAB WISSELEN
+═══════════════════════════════ */
+document.querySelectorAll(".config-tab").forEach(function(btn) {
+    btn.addEventListener("click", function() {
+        var tabId = this.dataset.tab;
+        document.querySelectorAll(".config-tab").forEach(function(t) { t.classList.remove("active"); });
+        document.querySelectorAll(".tab-paneel").forEach(function(p) { p.classList.remove("tab-paneel-active"); });
+        this.classList.add("active");
+        document.getElementById("tab-" + tabId).classList.add("tab-paneel-active");
+    });
+});
+
+/* ═══════════════════════════════
+   AH BESTELLING
+═══════════════════════════════ */
+var ahBestelling = [];
+
+function belaskoKolommen(lengte) {
+    var l = parseInt(lengte);
+    if (l >= 1501) return 5;
+    if (l >= 1001) return 4;
+    if (l >= 501)  return 3;
+    return 2;
+}
+
+function updateBelaskoLengte(val) {
+    document.getElementById("belasko-lengte-val").textContent = val;
+    document.getElementById("belasko-kolommen-label").textContent = " — " + belaskoKolommen(val) + " kolommen";
+}
+
+function voegAHToe(type) {
+    var item = { type: type, aantal: 1 };
+    if (type === "belasko") {
+        item.naam         = "Koldo Belasko";
+        item.materiaal    = document.getElementById("belasko-materiaal").value;
+        item.voet         = document.getElementById("belasko-voet").value;
+        item.hoogteLinks  = document.getElementById("belasko-hoogte-links").value;
+        item.hoogteRechts = document.getElementById("belasko-hoogte-rechts").value;
+        item.lengte       = document.getElementById("belasko-lengte").value;
+        item.kolommen     = belaskoKolommen(item.lengte);
+        item.svgSnapshot  = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent('<svg width="160" height="100" viewBox="0 0 160 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="160" height="100" fill="#FDF7F0"/><text x="80" y="64" font-family="Georgia, serif" font-size="44" font-weight="700" fill="#1B2F44" text-anchor="middle">KB</text></svg>');
+    } else if (type === "harp") {
+        item.naam        = "Elektrische harp";
+        item.opvangbak   = document.getElementById("harp-opvangbak").value;
+        item.pv          = document.getElementById("harp-pv").value;
+        item.svgSnapshot = harpSVGSnapshot(item.opvangbak === "ja", item.pv === "ja");
+    } else if (type === "mezenkast") {
+        item.naam        = "Koolmezenkast";
+        var ks = document.getElementById("mezenkast-kleur");
+        var ds = document.getElementById("mezenkast-kleur-dak");
+        var bs = document.getElementById("mezenkast-bevestiging");
+        var bo = document.getElementById("mezenkast-bollen");
+        item.kleur       = ks.options[ks.selectedIndex].text;
+        item.kleurDak    = ds.options[ds.selectedIndex].text;
+        item.bevestiging = bs.options[bs.selectedIndex].text;
+        item.bollen      = bo ? bo.value : "nee";
+        item.svgSnapshot = mezenSVGSnapshot();
+    } else if (type === "selectieveval") {
+        item.naam         = "Selectieve val";
+        item.lokvloeistof = document.getElementById("val-lokvloeistof").value;
+        item.kleikorrels  = document.getElementById("val-kleikorrels").value;
+        item.svgSnapshot  = valSVGSnapshot(item.lokvloeistof === "ja", item.kleikorrels === "ja");
+    }
+    ahBestelling.push(item);
+    renderAH();
+}
+
+function verwijderAH(index) {
+    ahBestelling.splice(index, 1);
+    renderAH();
+}
+
+function wijzigAHAantal(index, delta) {
+    if (!ahBestelling[index]) return;
+    var nieuw = (ahBestelling[index].aantal || 1) + delta;
+    if (nieuw < 1) return;
+    ahBestelling[index].aantal = nieuw;
+    renderAH();
+}
+
+/* ═══════════════════════════════
+   RENDER AH — volledig onafhankelijk
+   van configurator.js / bestellingBlok
+═══════════════════════════════ */
+function renderAH() {
+    var heeftAH          = ahBestelling.length > 0;
+    var overallBlok      = document.getElementById("overallSelectieBlok");
+    var ahSelectie       = document.getElementById("ahSelectieBlok");
+    var ahContainer      = document.getElementById("ahBestellingLijst");
+
+    /* Toon/verberg het AH-gedeelte */
+    if (ahSelectie) ahSelectie.classList.toggle("hidden", !heeftAH);
+
+    /* Toon de overkoepelende wrapper als er iets is (AH of kasten) */
+    updateOverallBlok();
+
+    /* Herrender de AH-kaarten */
+    if (!ahContainer) return;
+    ahContainer.innerHTML = "";
+
+    ahBestelling.forEach(function(item, i) {
+        var delen = [];
+        if (item.type === "belasko") {
+            delen.push("Materiaal: " + item.materiaal);
+            if (item.voet === "ja") delen.push("Verzwaarde voet");
+            delen.push("Hoogte links: " + item.hoogteLinks + " cm");
+            delen.push("Hoogte rechts: " + item.hoogteRechts + " cm");
+            delen.push("Lengte: " + item.lengte + " cm");
+            delen.push(item.kolommen + " kolommen");
+        } else if (item.type === "harp") {
+            if (item.opvangbak === "ja") delen.push("Met opvangbak");
+            if (item.pv === "ja")        delen.push("Met PV-paneel");
+        } else if (item.type === "mezenkast") {
+            delen.push("Kast: " + item.kleur);
+            if (item.kleurDak && item.kleurDak.indexOf("Zelfde") === -1) delen.push("Dak: " + item.kleurDak);
+            if (item.bevestiging && item.bevestiging !== "Geen") delen.push(item.bevestiging);
+            if (item.bollen === "ja") delen.push("Koolmezenbollen (5 st.)");
+        } else if (item.type === "selectieveval") {
+            if (item.lokvloeistof === "ja") delen.push("Met lokvloeistof");
+            if (item.kleikorrels  === "ja") delen.push("Met kleikorrels");
+        }
+
+        var aantal = item.aantal || 1;
+        var div = document.createElement("div");
+        div.className = "bestel-kaart ah-bestel-kaart";
+        var visualDiv = document.createElement("div");
+        if ((item.type === "mezenkast" || item.type === "harp" || item.type === "selectieveval" || item.type === "belasko") && item.svgSnapshot) {
+            visualDiv.className = "bestel-visual";
+            visualDiv.style.cssText = "background:#FDF7F0;padding:4px;display:flex;align-items:center;justify-content:center;";
+            var thumb = document.createElement("img");
+            thumb.src = item.svgSnapshot;
+            thumb.style.cssText = "width:60px;height:auto;display:block;";
+            visualDiv.appendChild(thumb);
+        } else {
+            visualDiv.className = "bestel-visual ah-bestel-icoon";
+            visualDiv.innerHTML = '<span class="ah-icoon-tekst">' + item.naam.substring(0,2).toUpperCase() + '</span>';
+        }
+        div.appendChild(visualDiv);
+
+        var infoDiv = document.createElement("div");
+        infoDiv.className = "bestel-info";
+        infoDiv.innerHTML =
+              '<b>' + item.naam + '</b>'
+            + '<span class="bestel-beschrijving">' + delen.join(" \u00b7 ") + '</span>'
+            + '<div class="bestel-controls">'
+            + '<button onclick="wijzigAHAantal(' + i + ',-1)">&#8722;</button>'
+            + ' ' + aantal + ' '
+            + '<button onclick="wijzigAHAantal(' + i + ',1)">+</button>'
+            + '</div>'
+            + '<div class="bestel-prijs">Prijs op maat</div>'
+            + '<button class="verwijder-btn" onclick="verwijderAH(' + i + ')">Verwijderen</button>';
+        div.appendChild(infoDiv);
+        ahContainer.appendChild(div);
+    });
+
+    sessionStorage.setItem("nb_ah_bestelling", JSON.stringify(ahBestelling));
+    updateBevestigBlok();
+}
+
+/* ═══════════════════════════════
+   OVERALL BLOK — toont als kasten
+   OF AH-items aanwezig zijn
+═══════════════════════════════ */
+function updateOverallBlok() {
+    var overallBlok = document.getElementById("overallSelectieBlok");
+    if (!overallBlok) return;
+    var heeftKasten = (typeof bestelling !== "undefined" && bestelling.length > 0);
+    var heeftAH     = ahBestelling.length > 0;
+    overallBlok.classList.toggle("hidden", !(heeftKasten || heeftAH));
+}
+
+function updateBevestigBlok() {
+    var blok = document.getElementById("bevestigBlok");
+    if (!blok) return;
+    var heeftKasten = (typeof bestelling !== "undefined" && bestelling.length > 0);
+    var heeftAH     = ahBestelling.length > 0;
+    blok.style.display = (heeftKasten || heeftAH) ? "block" : "none";
+}
+
+/* ═══════════════════════════════
+   HEADER HOOGTE
+═══════════════════════════════ */
+function getHeaderHoogte() {
+    var h = document.querySelector(".site-header");
+    return h ? h.offsetHeight + 20 : 80;
+}
+
+/* ═══════════════════════════════
+   FORMULIER
+═══════════════════════════════ */
+function toonFormulier(type) {
+    var formulierBlok  = document.getElementById("formulierBlok");
+    var formulierTitel = document.getElementById("formulierTitel");
+    var isBestelling   = (type === "bestelling");
+
+    document.getElementById("formulierType").value = type;
+    formulierTitel.innerText = isBestelling ? "Bevestig uw bestelling" : "Stel uw vraag";
+
+    /* Adresvelden: enabled + verplicht bij bestelling, disabled bij info */
+    var adresIds = ["straatGroup", "postcodeGroup", "gemeenteGroup"];
+    adresIds.forEach(function(id) {
+        var groep = document.getElementById(id);
+        var inp   = groep ? groep.querySelector("input") : null;
+        if (!groep || !inp) return;
+        if (isBestelling) {
+            groep.style.display = "";
+            inp.disabled = false;
+            inp.required = true;
+        } else {
+            groep.style.display = "none";
+            inp.disabled = true;
+            inp.required = false;
+        }
+    });
+
+    /* Factuur verbergen bij info */
+    var factuurGroup = document.getElementById("factuurGroup");
+    if (factuurGroup) factuurGroup.style.display = isBestelling ? "" : "none";
+    var factuurCb = document.getElementById("factuur");
+    if (factuurCb && !isBestelling) factuurCb.checked = false;
+    var btwBlok = document.getElementById("btwBlok");
+    if (btwBlok) btwBlok.style.display = "none";
+
+    var opmLabel = document.getElementById("opmerkingLabel");
+    if (opmLabel) opmLabel.textContent = isBestelling ? "Opmerking" : "Uw vraag";
+
+    /* Formulier tonen en naar scrollen */
+    formulierBlok.style.display = "block";
+    /* Reset naar formulier (verberg evt. eerder bevestigingsbericht) */
+    var form    = document.getElementById("contactForm");
+    var bericht = document.getElementById("bevestigingBericht");
+    var verzend = document.getElementById("verzendBtn");
+    if (form)    form.style.display = "block";
+    if (bericht) bericht.style.display = "none";
+    if (verzend) { verzend.disabled = false; verzend.textContent = "Verzenden"; }
+
+    setTimeout(function() {
+        var top = formulierBlok.getBoundingClientRect().top + window.scrollY - getHeaderHoogte();
+        window.scrollTo({ top: top, behavior: "smooth" });
+    }, 50);
+}
+
+/* ═══════════════════════════════
+   LOAD — patches en sessie herstel
+═══════════════════════════════ */
+window.addEventListener("load", function() {
+
+    /* ── Factuur checkbox ── */
+    var factuurCb = document.getElementById("factuur");
+    if (factuurCb) {
+        factuurCb.addEventListener("change", function() {
+            document.getElementById("btwBlok").style.display = this.checked ? "block" : "none";
+        });
+    }
+
+    /* ── Neutraliseer dubbele submit van configurator.js ── */
+    /* configurator.js registreert zijn eigen submit-handler die een tweede mail stuurt.
+       We vervangen het formulier-element zodat alle oude listeners verdwijnen,
+       en registreren daarna alleen onze eigen handler opnieuw. */
+    var oudForm = document.getElementById("contactForm");
+    if (oudForm) {
+        var nieuwForm = oudForm.cloneNode(true);
+        oudForm.parentNode.replaceChild(nieuwForm, oudForm);
+
+        nieuwForm.addEventListener("submit", function(e) {
+            e.preventDefault();
+            var overzicht = (typeof genereerBestelOverzicht === "function") ? genereerBestelOverzicht() : "";
+            document.getElementById("bestelInhoud").value = overzicht;
+
+            var type    = document.getElementById("formulierType").value;
+            var verzend = document.getElementById("verzendBtn");
+            if (verzend) { verzend.disabled = true; verzend.textContent = "Bezig met verzenden…"; }
+
+            var data = new FormData(nieuwForm);
+            data.append("_replyto", document.getElementById("email").value);
+            data.append("_subject", type === "bestelling"
+                ? "Nieuwe bestelling Nordic Beehive – " + document.getElementById("naam").value
+                : "Vraag Nordic Beehive – " + document.getElementById("naam").value);
+
+            fetch("https://formspree.io/f/xlgwvrpq", {
+                method: "POST",
+                body: data,
+                headers: { "Accept": "application/json" }
+            })
+            .then(function(resp) {
+                var bericht = document.getElementById("bevestigingBericht");
+                var tekst   = document.getElementById("bevestigingTekst");
+                if (resp.ok) {
+                    nieuwForm.style.display = "none";
+                    bericht.style.display = "block";
+                    tekst.textContent = type === "bestelling"
+                        ? "Uw bestelling is goed ontvangen. U hoort van ons binnen de 5 werkdagen met een orderbevestiging en levertermijn."
+                        : "Uw vraag is goed ontvangen. We nemen zo snel mogelijk contact met u op.";
+                } else {
+                    if (verzend) { verzend.disabled = false; verzend.textContent = "Verzenden"; }
+                    alert("Er liep iets mis. Probeer opnieuw of mail naar info@nordicbeehive.be.");
+                }
+            })
+            .catch(function() {
+                if (verzend) { verzend.disabled = false; verzend.textContent = "Verzenden"; }
+                alert("Geen verbinding. Probeer opnieuw of mail naar info@nordicbeehive.be.");
+            });
+        });
+    }
+
+    /* Initialiseer SVG-kleuren */
+    updateMezenkastSVG();
+
+    /* Knoplisteners */
+    var bevestigOud = document.getElementById("bevestigBestelling");
+    if (bevestigOud) {
+        var b1 = bevestigOud.cloneNode(true);
+        bevestigOud.parentNode.replaceChild(b1, bevestigOud);
+        b1.addEventListener("click", function() { toonFormulier("bestelling"); });
+    }
+    var vraagOud = document.getElementById("stelVraag");
+    if (vraagOud) {
+        var b2 = vraagOud.cloneNode(true);
+        vraagOud.parentNode.replaceChild(b2, vraagOud);
+        b2.addEventListener("click", function() { toonFormulier("info"); });
+    }
+    window.updateFormulierWeergave = function() {
+        toonFormulier(document.getElementById("formulierType").value);
+    };
+
+    /* Observer op bestellingLijst zodat kastwijzigingen ook overallBlok en bevestigBlok bijwerken */
+    var lijstEl = document.getElementById("bestellingLijst");
+    if (lijstEl) {
+        new MutationObserver(function() {
+            updateOverallBlok();
+            updateBevestigBlok();
+        }).observe(lijstEl, { childList: true, subtree: true });
+    }
+
+    /* Sessie herstel — kasten */
+    var opgeslagen = sessionStorage.getItem("nb_bestelling");
+    if (opgeslagen) {
+        try {
+            var data = JSON.parse(opgeslagen);
+            if (Array.isArray(data) && data.length > 0) {
+                data.forEach(function(item) { bestelling.push(item); });
+                renderBestelling();
+            }
+        } catch(e) {}
+    }
+
+    /* Sessie herstel — AH */
+    var opgeslagenAH = sessionStorage.getItem("nb_ah_bestelling");
+    if (opgeslagenAH) {
+        try {
+            var dataAH = JSON.parse(opgeslagenAH);
+            if (Array.isArray(dataAH) && dataAH.length > 0) {
+                dataAH.forEach(function(item) { ahBestelling.push(item); });
+                renderAH();
+            }
+        } catch(e) {}
+    }
+
+    /* Patch renderBestelling */
+    var _orig = window.renderBestelling;
+    window.renderBestelling = function() {
+        _orig();
+        sessionStorage.setItem("nb_bestelling", JSON.stringify(bestelling));
+        updateOverallBlok();
+        updateBevestigBlok();
+
+        /* Hernaam "Kast X" naar "Configuratie X" — alleen kastkaarten */
+        var kastKaarten = document.querySelectorAll("#bestellingLijst .bestel-kaart");
+        kastKaarten.forEach(function(kaart, i) {
+            var b = kaart.querySelector(".bestel-info b");
+            if (b) b.textContent = "Configuratie " + (i + 1);
+        });
+    };
+
+    /* Patch genereerBestelOverzicht */
+    var _origOvz = window.genereerBestelOverzicht;
+    window.genereerBestelOverzicht = function() {
+        var tekst = (typeof _origOvz === "function") ? _origOvz() : "";
+        if (ahBestelling.length > 0) {
+            tekst += "====================================\n";
+            tekst += "BESCHERMING AZIATISCHE HOORNAAR\n";
+            tekst += "------------------------------------\n";
+            ahBestelling.forEach(function(item) {
+                var aantal = item.aantal || 1;
+                tekst += item.naam + (aantal > 1 ? " (" + aantal + "x)" : "") + "\n";
+                if (item.type === "belasko") {
+                    tekst += "  Materiaal: " + item.materiaal + "\n";
+                    if (item.voet === "ja") tekst += "  Verzwaarde voet: ja\n";
+                    tekst += "  Hoogte links: " + item.hoogteLinks + " cm\n";
+                    tekst += "  Hoogte rechts: " + item.hoogteRechts + " cm\n";
+                    tekst += "  Lengte: " + item.lengte + " cm\n";
+                    tekst += "  Kolommen: " + item.kolommen + "\n";
+                } else if (item.type === "harp") {
+                    tekst += "  Opvangbak: " + item.opvangbak + "\n";
+                    tekst += "  PV-paneel: " + item.pv + "\n";
+                } else if (item.type === "mezenkast") {
+                    tekst += "  Kleur kast: " + item.kleur + "\n";
+                    tekst += "  Kleur dak: " + item.kleurDak + "\n";
+                    tekst += "  Bevestiging: " + item.bevestiging + "\n";
+                    if (item.bollen === "ja") tekst += "  Koolmezenbollen (5 st.): ja\n";
+                } else if (item.type === "selectieveval") {
+                    tekst += "  Lokvloeistof: " + item.lokvloeistof + "\n";
+                    tekst += "  Kleikorrels: " + item.kleikorrels + "\n";
+                }
+                tekst += "\n";
+            });
+        }
+        return tekst;
+    };
+
+    /* Snapshot: SVG direct naar canvas */
+    window.maakSnapshot = async function() {
+        var vis      = document.getElementById("visualiser");
+        var wrappers = Array.from(vis.children);
+        var totalW = 0, totalH = 0;
+        var svgData  = wrappers.map(function(wrapper) {
+            var svg = wrapper.querySelector("svg");
+            if (!svg) return null;
+            var vb = svg.viewBox && svg.viewBox.baseVal;
+            var w  = (vb && vb.width)  ? vb.width  : parseFloat(svg.getAttribute("width"))  || 460;
+            var h  = (vb && vb.height) ? vb.height : parseFloat(svg.getAttribute("height")) || 100;
+            totalW = Math.max(totalW, w);
+            return { svg: svg, w: w, h: h };
+        }).filter(Boolean);
+        svgData.forEach(function(d) { totalH += d.h; });
+        if (!totalW) totalW = 460;
+        if (!totalH) totalH = 200;
+        var scale  = 2;
+        var canvas = document.createElement("canvas");
+        canvas.width  = totalW * scale;
+        canvas.height = totalH * scale;
+        var ctx = canvas.getContext("2d");
+        ctx.scale(scale, scale);
+        var currentY = totalH;
+        for (var idx = 0; idx < svgData.length; idx++) {
+            var item = svgData[idx];
+            currentY -= item.h;
+            var svgStr = new XMLSerializer().serializeToString(item.svg);
+            var url    = URL.createObjectURL(new Blob([svgStr], { type: "image/svg+xml" }));
+            await new Promise(function(resolve) {
+                var img  = new Image();
+                var u    = url;
+                var cx   = currentY;
+                img.onload  = function() { ctx.drawImage(img, (totalW - item.w)/2, cx, item.w, item.h); URL.revokeObjectURL(u); resolve(); };
+                img.onerror = function() { URL.revokeObjectURL(u); resolve(); };
+                img.src = u;
+            });
+        }
+        return canvas.toDataURL("image/png");
+    };
+
+});
+</script>
+
+</body>
+</html>

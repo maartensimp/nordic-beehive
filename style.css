@@ -1,452 +1,219 @@
+/* ============================================
+   Nordic Beehive – V2 Styles
+   Laadt bovenop style.css
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+:root {
+    --nb-cream:   #FDF7F0;
+    --nb-navy:    #1B2F44;
+    --nb-gold:    #F7C112;
+    --nb-sand:    #E8DDD0;
+    --nb-shadow:  rgba(27, 47, 68, 0.08);
+    --nb-border:  rgba(27, 47, 68, 0.12);
+    --r-sm: 8px;
+    --r-md: 14px;
+    --r-lg: 22px;
+    --ease: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Global font ─────────────────────────────── */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'DM Sans', Arial, sans-serif;
     background: #FDF7F0;
-    margin: 0;
 }
 
-.configurator {
-    width: 420px;
-    margin: auto;
-    background: #ddd;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+/* Alle secties zelfde achtergrond */
+.hero, .section, .usp-section,
+.kleuren-section, .footer {
+    background: #FDF7F0;
 }
 
-.prijsblok {
-    width: 420px;
-    margin: 25px auto 0 auto;
-    font-size: 20px;
-    font-weight: bold;
+/* Factuurvelden verbergen bij "info"-formulier */
+.formulier-info #factuurGroup,
+.formulier-info #btwBlok {
+    display: none !important;
 }
-
-.overzicht-titel {
-    margin-top: 40px;
-    font-size: 24px;
-    font-weight: 600;
-    letter-spacing: 0.3px;
-}
-
-h1 {
-    margin-top: 0;
-}
-
-label {
-    display: block;
-    margin-top: 18px;
-    margin-bottom: 6px;
-    font-weight: bold;
-}
-
-select {
-    width: 100%;
-    padding: 6px;
-    font-size: 14px;
-}
-
-.buttons {
-    display: flex;
-    gap: 10px;
-    margin-top: 8px;
-}
-
-button {
-    padding: 6px 10px;
-    cursor: pointer;
-}
-
-ul {
-    padding-left: 18px;
-}
-
-li {
-    margin: 6px 0;
-}
-
-li button {
-    margin-left: 10px;
-}
-
-/* 🏆 VISUALISER */
-
-#visualiser {
-    margin-top: 25px;
-    position: relative;
-    zoom: 0.55;
-}
-
-.visual-container {
-    margin-top: 40px;
-    padding-top: 20px;
-    border-top: 1px solid #ddd;
-}
-
-/* STACK ITEMS */
-
-.stack-item {
-    height: auto;
-    display: block;
-    position: relative;
-}
-
-/* Dak altijd visueel vooraan */
-
-.stack-item.dak {
-    z-index: 10;
-}
-
-/* 🏆 DAK OFFSET RULE */
-
-.dak-offset {
-    margin-bottom: -25px;
-}
-
-.prijsblok {
-    width: 420px;
-    margin: 25px auto 0 auto;
-    font-size: 13px;
-    font-weight: bold;
-}
-
-
-#bestellingTotaal {
-    font-size: 22px;
-    font-weight: bold;
-    margin-top: 15px;
-}
-
-#addToOrder {
-    display: block;
-    width: 420px;
-    margin: 10px auto;
-    padding: 10px;
-    font-size: 15px;
-}
-
-.hidden {
+.formulier-info #straatGroup,
+.formulier-info #postcodeGroup,
+.formulier-info #gemeenteGroup {
     display: none !important;
 }
 
-.bestel-item {
-    margin-top: 10px;
-    padding: 10px;
-    background: #FDF7F0;
-    border-radius: 6px;
+/* Scroll-offset: titel komt net onder de sticky header */
+#verhaal, #kleuren, #realisaties {
+    scroll-margin-top: 80px;
 }
 
-.bestel-kaart {
-    display: flex;
-    gap: 20px;
-    padding: 15px;
-    margin-top: 15px;
-    background: #FDF7F0;
-    border-radius: 10px;
-}
+/* ══════════════════════════════════════════════
+   HEADER
+══════════════════════════════════════════════ */
 
-.bestel-visual {
-    width: 140px;
-    flex-shrink: 0;
-
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-}
-
-.bestel-visual img {
-    width: 200px;
+.site-logo {
+    width: 200px !important;
     height: auto;
-
-    object-fit: contain;
-}
-
-.bestel-visual #visualiser {
-    transform: none !important;
-}
-
-.bestel-info {
-    flex: 1;
-}
-
-.bestel-beschrijving {
-    color: #666;
-    font-size: 13px;
-}
-
-.bestel-controls {
-    margin: 8px 0;
-}
-
-.bestel-prijs {
-    font-weight: bold;
-    margin: 6px 0;
-    font-size: 16px;
-}
-
-/* Actieblok onder totaal */
-
-#actieBlok {
-    margin-top: 25px;
-}
-
-.actie-primaire,
-.actie-secundaire {
-    margin-top: 20px;
-    text-align: left;
-}
-
-.btn-primary {
-    width: 300px;
-    padding: 12px;
-    display: block;
-    font-size: 15px;
-    margin-top: 10px;
-    background: #2f3e46;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-.btn-primary:hover {
-    background: #354f52;
-}
-
-.btn-outline {
-    width: 300px;
-    padding: 12px;
-    display: block;
-    font-size: 15px;
-    margin-top: 10px;
-    background: white;
-    border: 1px solid #2f3e46;
-    color: #2f3e46;
-    cursor: pointer;
-}
-
-.btn-outline:hover {
-    background: #f1f1f1;
-}
-
-.actie-tekst {
-    font-size: 13px;
-    color: #666;
-    margin-top: 10px;
-    line-height: 1.4;
-}
-
-#bodemKleurWrapper label,
-#moduleOpties label,
-.normal-label,
-#dakKleurWrapper label {
-    font-weight: normal;
-}
-
-#formulierBlok {
-    margin-top: 40px;
-}
-
-#contactForm {
-    margin-top: 15px;
-}
-
-#contactForm input,
-#contactForm textarea {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 12px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-}
-
-.factuur-group {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 15px;
-}
-
-.factuur-text {
-    margin: 0;
-    font-weight: 600;
-}
-
-.factuur-checkbox {
-    width: 18px;
-    height: 18px;
-}
-
-.checkbox-label {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-    font-weight: normal;
-}
-
-.checkbox-label input {
-    width: 18px;
-    height: 18px;
-    margin: 0;
-}
-
-.form-group {
-    display: block;
-    margin-bottom: 15px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 600;
-}
-
-.form-group input,
-.form-group textarea,
-.form-group select {
-    width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
-}
-
-.factuur-group label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-weight: 600;   /* indien je het terug vet wil */
-}
-
-.factuur-group input[type="checkbox"] {
-    width: auto !important;
-    height: 18px;
-}
-
-.container {
-    width: 90%;
-    max-width: 1100px;
-    margin: auto;
 }
 
 .site-header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background: #FDF7F0;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1000 !important;
+    background: #FDF7F0 !important;
+    box-shadow: 0 3px 16px rgba(27,47,68,0.09) !important;
+    padding: 0 !important;
 }
 
 .header-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 18px 0 !important;
+    /* meer witruimte links/rechts via container */
 }
 
-nav a {
-    margin-left: 25px;
-    text-decoration: none;
-    color: #1B2F44;
-    font-weight: 700;
-    font-size: 21px;        /* 👈 groter */
-    letter-spacing: 0.5px;  /* 👈 iets eleganter */
-    transition: color 0.2s ease;
+/* container iets smaller voor meer lucht */
+.container {
+    width: 88%;
+    max-width: 1140px;
+    margin: auto;
 }
 
-nav a:hover {
-    color: #F7C112;
+.site-header nav {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 0 !important;
 }
 
-nav a.active {
-    color: #F7C112;
+.site-header nav a.nav-link {
+    display: inline-block !important;
+    margin-left: 32px !important;
+    text-decoration: none !important;
+    color: #1B2F44 !important;
+    font-weight: 700 !important;
+    font-size: 16px !important;
+    letter-spacing: 0.3px !important;
+    transition: color 0.2s ease !important;
+    padding-bottom: 3px !important;
+    border-bottom: 2px solid transparent !important;
 }
 
-.site-logo {
-    width: 420px;
-    height: auto;
+.site-header nav a.nav-link:hover {
+    color: #F7C112 !important;
 }
 
-section {
-    scroll-margin-top: 180px;   /* hoogte van je header */
+.site-header nav a.nav-link.active {
+    color: #F7C112 !important;
+    border-bottom-color: #F7C112 !important;
 }
 
-.hero {
+/* ══════════════════════════════════════════════
+   HOMEPAGE — algemene spacing
+══════════════════════════════════════════════ */
+
+.section, .usp-section, .kleuren-section {
     padding: 100px 0;
-    text-align: center;
-    line-height: 1.6;
-    background: #FDF7F0;
 }
 
-.section {
-    padding: 100px 0px;
-    line-height: 1.6;
+.section p,
+.usp-item p {
+    line-height: 1.85;
+    margin-bottom: 18px;
+    font-size: 16px;
 }
 
-.light {
-    background: #FDF7F0;
+.section h2,
+.usp-section h2,
+.kleuren-section h2 {
+    margin-bottom: 32px;
+    font-size: clamp(24px, 3vw, 36px);
 }
 
-.grid-3 {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
-}
+/* ── Knoppen — auto breedte tenzij overschreven ── */
 
 .btn-primary {
-    display: inline-block;
-    padding: 14px 28px;
-    background: #1B2F44;     /* blauw */
-    color: white;
-    text-decoration: none;
-    font-weight: 700;
-    border: none;
-    border-radius: 6px;
-    transition: all 0.2s ease;
+    display: inline-block !important;
+    width: auto !important;
+    padding: 13px 30px !important;
+    font-size: 15px !important;
+    font-family: 'DM Sans', Arial, sans-serif !important;
+    font-weight: 700 !important;
+    background: #1B2F44 !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 6px !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    box-sizing: border-box !important;
+    letter-spacing: 0.2px !important;
 }
 
 .btn-primary:hover {
-    background: #F7C112;     /* geel */
-    color: #1B2F44;          /* tekst wordt blauw */
+    background: #F7C112 !important;
+    color: #1B2F44 !important;
 }
 
 .btn-outline {
-    display: inline-block;
-    padding: 12px 25px;
-    border: 1px solid #333;
-    color: #333;
-    text-decoration: none;
+    display: inline-block !important;
+    width: auto !important;
+    padding: 12px 28px !important;
+    font-size: 15px !important;
+    font-family: 'DM Sans', Arial, sans-serif !important;
+    font-weight: 600 !important;
+    background: white !important;
+    color: #1B2F44 !important;
+    border: 1.5px solid #1B2F44 !important;
+    border-radius: 6px !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    text-decoration: none !important;
 }
 
-.footer {
-    padding: 30px 0;
-    text-align: center;
-    background: #FDF7F0;
+.btn-outline:hover { background: #f1f1f1 !important; }
+
+/* Actieblok en formulier mogen breder */
+#actieBlok .btn-primary,
+#actieBlok .btn-outline,
+#formulierBlok .btn-primary {
+    display: block !important;
+    width: 100% !important;
+    max-width: 320px !important;
 }
 
-.grid-3 {
+/* ══════════════════════════════════════════════
+   KLEUREN-GRID — 3 kolommen, 2 rijen
+══════════════════════════════════════════════ */
+
+.kleuren-intro {
+    margin: 0 0 52px 0;
+    line-height: 1.8;
+    max-width: 780px;
+    font-size: 16px;
+}
+
+.kleuren-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 40px;
-    margin-top: 40px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    justify-items: stretch;
 }
 
-.color-swatch {
-    width: 100%;
-    height: 120px;
-    border-radius: 8px;
-    margin-bottom: 15px;
+@media (max-width: 860px) {
+    .kleuren-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-/* Kleuren */
-.wit    { background: #F2F2F2; color: #1B2F44; }
-.roze   { background: #B78893; color: #1B2F44; }
-.groen  { background: #7F9F63; color: white; }
-.blauw  { background: #4C87A6; color: white; }
-.rood   { background: #8B2A1A; color: white; }
-.geel   { background: #E5B75C; color: #1B2F44; }
+@media (max-width: 540px) {
+    .kleuren-grid { grid-template-columns: 1fr; }
+}
 
 .color-card {
-    text-align: center;
     width: 100%;
-    max-width: 380px;
-    aspect-ratio: 3 / 4;   /* Portrait verhouding */
+    aspect-ratio: 3 / 4;
     position: relative;
+    max-width: none;        /* overschrijf origineel max-width */
 }
 
 .color-hover {
@@ -454,43 +221,56 @@ section {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    border-radius: 14px;
+    border-radius: 16px;
+    cursor: pointer;
 }
 
-/* Voorzijde */
+/* Voorzijde — kleur via class */
 .color-front {
     position: absolute;
-    inset: 0;                 /* vervangt width/height */
-    padding: 40px;
-
+    inset: 0;
+    padding: 36px 28px;
     display: flex;
     flex-direction: column;
-    justify-content: center;  /* verticaal */
-    align-items: center;      /* horizontaal */
-
+    justify-content: center;
+    align-items: center;
     text-align: center;
-
     transition: opacity 0.4s ease;
     z-index: 2;
 }
 
 .color-front h3 {
-    font-size: 28px;
-    margin-bottom: 15px;
-    max-width: 90%;
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+}
+
+.kleur-subtitel {
+    display: block;
+    font-size: 15px;
+    opacity: 0.8;
+    margin: 0 0 14px 0;
 }
 
 .color-front p {
-    font-size: 16px;
-    opacity: 0.9;
-    max-width: 90%;
+    font-size: 14px;
+    opacity: 0.85;
+    margin: 0;
+    line-height: 1.5;
 }
 
-/* Achterzijde */
+/* Achtergrondkleuren per tegel */
+.color-front.groen { background: #7F9F63; color: white; }
+.color-front.blauw { background: #4C87A6; color: white; }
+.color-front.rood  { background: #8B2A1A; color: white; }
+.color-front.geel  { background: #E5B75C; color: #1B2F44; }
+.color-front.wit   { background: #F0EDED; color: #1B2F44; border: 1px solid rgba(27,47,68,0.08); }
+.color-front.roze  { background: #B78893; color: #1B2F44; }
+
+/* Achterzijde — foto */
 .color-back {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     opacity: 0;
     transition: opacity 0.4s ease;
 }
@@ -499,80 +279,1673 @@ section {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
     transition: transform 0.6s ease;
 }
 
-/* Hover effect */
-.color-hover:hover .color-back {
-    opacity: 1;
-}
+.color-hover:hover .color-back      { opacity: 1; }
+.color-hover:hover .color-front     { opacity: 0; }
+.color-hover:hover .color-back img  { transform: scale(1.05); }
 
-.color-hover:hover .color-front {
-    opacity: 0;
-}
-
-.color-hover:hover .color-back img {
-    transform: scale(1.05);
-}
-
-.kleuren-section {
-    padding: 100px 0px;
-}
-
-.kleuren-intro {
-    margin: 20px 0 60px;
-    line-height: 1.6;
-}
-
-.kleuren-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 50px;
-    justify-items: center;
-}
-
-.kleur-subtitel {
-    display: block;
-    font-size: 18px;
-    margin-top: 0px;
-    margin-bottom: 20px;
-    opacity: 0.8;
-}
-
-.usp-section {
-    padding: 0px 0px;
-    background: #FDF7F0;
-}
-
-.usp-section h2 {
-    margin-bottom: 5px;
-}
-
+/* USP grid */
 .usp-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    gap: 32px;
+    margin-top: 16px;
 }
 
 .usp-item h3 {
     color: #1B2F44;
-    font-weight: 600;
+    font-weight: 700;
+    margin-bottom: 12px;
+    font-size: 18px;
     position: relative;
     display: inline-block;
-    margin-bottom: 15px;
 }
 
 .usp-item h3::after {
     content: "";
     display: block;
-    width: 40px;
+    width: 36px;
     height: 3px;
     background: #F7C112;
     margin-top: 8px;
 }
 
-.usp-item p {
+/* feature list */
+.feature-list li {
+    margin: 10px 0;
     font-size: 16px;
     line-height: 1.6;
-    color: inherit;   /* gebruikt standaard tekstkleur */
+}
+
+/* ══════════════════════════════════════════════
+   CONFIGURATOR PAGINA
+══════════════════════════════════════════════ */
+
+.configurator-page-wrapper {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 60px 40px 100px;
+}
+
+.configurator-page-wrapper h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 700;
+    color: #1B2F44;
+    margin: 0 0 6px 0;
+    letter-spacing: -0.5px;
+}
+
+.page-subtitle {
+    font-size: 15px;
+    color: #6B7D8E;
+    margin: 0 0 48px 0;
+}
+
+/* Two-column layout */
+.config-layout {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 36px;
+    align-items: start;
+}
+
+@media (max-width: 960px) {
+    .config-layout { grid-template-columns: 1fr; }
+    .config-right  { position: static; }
+}
+
+/* ── Panels ── */
+.config-panel {
+    background: white;
+    border-radius: var(--r-lg);
+    padding: 32px;
+    box-shadow: 0 2px 20px var(--nb-shadow);
+    border: 1px solid var(--nb-border);
+}
+
+.config-panel + .config-panel { margin-top: 20px; }
+
+.panel-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: #1B2F44;
+    margin: 0 0 22px 0;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--nb-sand);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.step-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: #1B2F44;
+    color: white;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 700;
+    font-family: 'DM Sans', sans-serif;
+    flex-shrink: 0;
+}
+
+/* Labels in config panels */
+.config-panel label,
+.field-group label {
+    display: block !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    color: #4A5968 !important;
+    letter-spacing: 0.6px !important;
+    text-transform: uppercase !important;
+    margin-top: 0 !important;
+    margin-bottom: 7px !important;
+}
+
+.field-group { margin-bottom: 18px; }
+
+/* Selects */
+.config-panel select {
+    width: 100%;
+    padding: 10px 36px 10px 12px;
+    font-size: 14px;
+    font-family: 'DM Sans', Arial, sans-serif;
+    color: #1B2F44;
+    background-color: #FDF7F0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%231B2F44' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 11px center;
+    border: 1.5px solid rgba(27, 47, 68, 0.15);
+    border-radius: var(--r-sm);
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    transition: border-color var(--ease), box-shadow var(--ease);
+}
+
+.config-panel select:focus {
+    outline: none;
+    border-color: #1B2F44;
+    box-shadow: 0 0 0 3px rgba(27, 47, 68, 0.08);
+}
+
+/* Add buttons */
+.add-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 4px;
+}
+
+.add-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    padding: 13px 8px;
+    background: #FDF7F0;
+    border: 1.5px dashed rgba(27, 47, 68, 0.22);
+    border-radius: var(--r-md);
+    color: #1B2F44;
+    font-size: 11px;
+    font-weight: 700;
+    font-family: 'DM Sans', Arial, sans-serif;
+    cursor: pointer;
+    transition: all var(--ease);
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+.add-btn .add-icon { font-size: 18px; line-height: 1; }
+
+.add-btn:hover {
+    background: #1B2F44;
+    color: white;
+    border-style: solid;
+    border-color: #1B2F44;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(27, 47, 68, 0.18);
+}
+
+/* Stack list */
+#stackList {
+    list-style: none;
+    padding: 0;
+    margin: 14px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+#stackList li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 12px;
+    background: #FDF7F0;
+    border-radius: var(--r-sm);
+    border: 1px solid rgba(27, 47, 68, 0.1);
+    font-size: 13px;
+    font-weight: 600;
+    color: #1B2F44;
+    animation: slideIn 0.18s ease;
+    margin: 0;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+#stackList li select {
+    width: auto !important;
+    min-width: 100px;
+    padding: 4px 28px 4px 8px !important;
+    font-size: 12px !important;
+    border-radius: var(--r-sm) !important;
+    background-color: white !important;
+    margin: 0 !important;
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+    font-weight: 400 !important;
+}
+
+#stackList li button {
+    background: none !important;
+    border: none !important;
+    color: #C0392B !important;
+    font-size: 15px !important;
+    cursor: pointer !important;
+    padding: 3px 5px !important;
+    border-radius: var(--r-sm) !important;
+    transition: background var(--ease) !important;
+    line-height: 1 !important;
+    width: auto !important;
+}
+
+#stackList li button:hover {
+    background: rgba(192, 57, 43, 0.1) !important;
+}
+
+/* Options grid */
+.options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 16px;
+}
+
+.field-divider {
+    height: 1px;
+    background: #E8DDD0;
+    margin: 20px 0;
+}
+
+/* ── Rechterkolom sticky ── */
+.config-right {
+    position: sticky;
+    top: 108px;
+}
+
+.preview-card {
+    background: white;
+    border-radius: var(--r-lg);
+    padding: 24px 20px;
+    box-shadow: 0 2px 20px var(--nb-shadow);
+    border: 1px solid var(--nb-border);
+}
+
+.preview-title {
+    font-family: 'DM Sans', Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #4A5968;
+    margin: 0 0 14px 0;
+    text-align: center;
+    opacity: 1;
+    letter-spacing: 0.3px;
+}
+
+/* Visual container */
+.visual-container {
+    margin: 0;
+    padding: 8px 0 0 0;
+    border: none;
+    min-height: 80px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+#visualiser {
+    zoom: 0.38;
+    margin: 0 auto;
+    display: block;
+    flex-shrink: 0;
+}
+
+/* ── Prijsblok ── */
+.price-block {
+    margin-top: 22px;
+    padding: 16px 18px;
+    background: #1B2F44;
+    border-radius: var(--r-md);
+    color: white;
+    text-align: center;
+}
+
+.price-label {
+    font-size: 10px;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin-bottom: 6px;
+    font-family: 'DM Sans', sans-serif;
+}
+
+/* € en bedrag: zelfde grootte, naast elkaar */
+.price-amount {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.price-amount .currency,
+.price-amount #prijs {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -1px;
+}
+
+.price-note {
+    font-size: 10px;
+    opacity: 0.45;
+    margin-top: 6px;
+    font-family: 'DM Sans', sans-serif;
+}
+
+/* Toevoegen-knop */
+#addToOrder {
+    display: block !important;
+    width: 100% !important;
+    margin: 12px 0 0 0 !important;
+    padding: 13px !important;
+    font-size: 14px !important;
+    font-family: 'DM Sans', Arial, sans-serif !important;
+    font-weight: 700 !important;
+    background: #F7C112 !important;
+    color: #1B2F44 !important;
+    border: none !important;
+    border-radius: var(--r-md) !important;
+    cursor: pointer !important;
+    transition: all var(--ease) !important;
+    text-align: center !important;
+}
+
+#addToOrder:hover {
+    background: #e5b300 !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 5px 14px rgba(247, 193, 18, 0.3) !important;
+}
+
+/* ══════════════════════════════════════════════
+   BESTELLINGSOVERZICHT
+══════════════════════════════════════════════ */
+
+.bestelling-section { margin-top: 56px; }
+
+h3.overzicht-titel {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #1B2F44;
+    margin: 0 0 22px 0;
+}
+
+.bestel-kaart {
+    display: flex;
+    gap: 18px;
+    padding: 18px;
+    margin-bottom: 12px;
+    background: white;
+    border-radius: var(--r-md);
+    border: 1px solid var(--nb-border);
+    box-shadow: 0 2px 10px var(--nb-shadow);
+}
+
+/* Snapshot preview */
+.bestel-visual {
+    width: 100px;
+    height: 140px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #FDF7F0;
+    border-radius: var(--r-sm);
+    overflow: hidden;
+    padding: 6px;
+    box-sizing: border-box;
+}
+
+.bestel-visual img {
+    max-width: 100%;
+    max-height: 128px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+.bestel-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.bestel-info b {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 15px;
+    color: #1B2F44;
+}
+
+.bestel-beschrijving {
+    color: #7A8A98;
+    font-size: 12px;
+}
+
+.bestel-controls {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    margin: 8px 0 4px !important;
+    font-weight: 700 !important;
+    font-size: 14px !important;
+    color: #1B2F44 !important;
+}
+
+.bestel-controls button {
+    width: 28px !important;
+    height: 28px !important;
+    border-radius: 50% !important;
+    border: 1.5px solid rgba(27,47,68,0.18) !important;
+    background: #FDF7F0 !important;
+    font-size: 15px !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all var(--ease) !important;
+    font-family: 'DM Sans', sans-serif !important;
+    padding: 0 !important;
+    color: #1B2F44 !important;
+    line-height: 1 !important;
+}
+
+.bestel-controls button:hover {
+    background: #1B2F44 !important;
+    color: white !important;
+    border-color: #1B2F44 !important;
+}
+
+.bestel-prijs {
+    font-weight: 700 !important;
+    font-size: 17px !important;
+    color: #1B2F44 !important;
+}
+
+/* Verwijder-knop: klein en subtiel */
+.bestel-info .verwijder-btn {
+    background: none !important;
+    border: none !important;
+    color: #C0392B !important;
+    font-size: 12px !important;
+    cursor: pointer !important;
+    padding: 0 !important;
+    font-family: 'DM Sans', sans-serif !important;
+    text-decoration: underline !important;
+    text-align: left !important;
+    width: auto !important;
+    display: inline !important;
+    margin-top: 4px !important;
+    font-weight: 400 !important;
+}
+
+#bestellingTotaal {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #1B2F44;
+    margin-top: 16px;
+    padding: 16px 0;
+    border-top: 2px solid #E8DDD0;
+}
+
+/* Actieblok */
+#actieBlok {
+    margin-top: 26px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+@media (max-width: 700px) {
+    #actieBlok { grid-template-columns: 1fr; }
+}
+
+.actie-primaire,
+.actie-secundaire {
+    background: white;
+    border-radius: var(--r-md);
+    padding: 22px;
+    border: 1px solid var(--nb-border);
+}
+
+.actie-tekst {
+    font-size: 12px;
+    color: #7A8A98;
+    margin-top: 10px;
+    line-height: 1.6;
+}
+
+/* ── Formulier ── */
+#formulierBlok {
+    margin-top: 36px;
+    background: white;
+    border-radius: var(--r-lg);
+    padding: 32px;
+    border: 1px solid var(--nb-border);
+    box-shadow: 0 2px 20px var(--nb-shadow);
+}
+
+#formulierTitel {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #1B2F44;
+    margin: 0 0 22px 0;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 20px;
+}
+
+@media (max-width: 640px) {
+    .form-grid { grid-template-columns: 1fr; }
+}
+
+.form-group {
+    margin-bottom: 15px;
+    display: block;
+}
+
+.form-group label {
+    display: block !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.6px !important;
+    text-transform: uppercase !important;
+    color: #4A5968 !important;
+    margin-bottom: 6px !important;
+    margin-top: 0 !important;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 14px;
+    font-family: 'DM Sans', Arial, sans-serif;
+    color: #1B2F44;
+    background: #FDF7F0;
+    border: 1.5px solid rgba(27, 47, 68, 0.15);
+    border-radius: var(--r-sm);
+    box-sizing: border-box;
+    transition: border-color var(--ease), box-shadow var(--ease);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #1B2F44;
+    box-shadow: 0 0 0 3px rgba(27, 47, 68, 0.07);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.factuur-group {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    margin-bottom: 12px !important;
+}
+
+.factuur-group label {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    font-weight: 600 !important;
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+    font-size: 14px !important;
+    color: #1B2F44 !important;
+    cursor: pointer !important;
+    margin: 0 !important;
+}
+
+.factuur-group input[type="checkbox"] {
+    width: 17px !important;
+    height: 17px !important;
+    cursor: pointer !important;
+    accent-color: #1B2F44 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+/* ═══════════════════════════════════════════════
+   Nordic Beehive – Extra stijlen nieuwe pagina's
+   Voeg toe aan style-configurator-v2.css
+═══════════════════════════════════════════════ */
+
+/* ── Page intro (alle pagina's behalve home) ── */
+
+.page-intro {
+    padding: 80px 0 60px;
+    background: #FDF7F0;
+}
+
+.page-intro h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700;
+    color: #1B2F44;
+    margin: 0 0 16px 0;
+    letter-spacing: -0.5px;
+}
+
+.page-intro-sub {
+    font-size: 17px;
+    color: #5A6B7A;
+    max-width: 680px;
+    line-height: 1.75;
+    margin: 0;
+}
+
+/* ── Hero CTA's naast elkaar ── */
+
+.hero-ctas {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 32px;
+}
+
+.btn-outline-hero {
+    display: inline-block;
+    padding: 13px 28px;
+    font-size: 15px;
+    font-family: 'DM Sans', Arial, sans-serif;
+    font-weight: 600;
+    background: transparent;
+    color: #1B2F44;
+    border: 1.5px solid #1B2F44;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.btn-outline-hero:hover {
+    background: rgba(27,47,68,0.07);
+}
+
+/* ── Section alt: lichte achtergrond voor afwisseling ── */
+
+.section-alt {
+    background: #F4EDE3;
+}
+
+/* ── Verhaal tekst ── */
+
+.verhaal-tekst {
+    max-width: 760px;
+}
+
+.verhaal-tekst p {
+    margin-bottom: 20px;
+    line-height: 1.85;
+    font-size: 16px;
+}
+
+/* ── USP grid varianten ── */
+
+.usp-grid-3 {
+    grid-template-columns: repeat(3, 1fr) !important;
+}
+
+.usp-grid-4 {
+    grid-template-columns: repeat(4, 1fr) !important;
+}
+
+@media (max-width: 1000px) {
+    .usp-grid-3,
+    .usp-grid-4 {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+@media (max-width: 580px) {
+    .usp-grid-3,
+    .usp-grid-4 {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* ── Realisaties intro ── */
+
+.realisaties-intro {
+    font-size: 16px;
+    line-height: 1.75;
+    max-width: 640px;
+    color: #5A6B7A;
+}
+
+/* ── Afsluitende CTA sectie ── */
+
+.cta-section {
+    background: #1B2F44;
+    padding: 80px 0;
+}
+
+.cta-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+@media (max-width: 860px) {
+    .cta-grid { grid-template-columns: 1fr; }
+}
+
+.cta-blok {
+    color: white;
+}
+
+.cta-blok h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    color: #F7C112;
+}
+
+.cta-blok p {
+    font-size: 15px;
+    line-height: 1.65;
+    opacity: 0.8;
+    margin: 0 0 20px 0;
+}
+
+/* Knoppen in donker cta-blok */
+.cta-blok .btn-primary {
+    background: #F7C112 !important;
+    color: #1B2F44 !important;
+}
+
+.cta-blok .btn-primary:hover {
+    background: white !important;
+    color: #1B2F44 !important;
+}
+
+.cta-blok .btn-outline {
+    background: transparent !important;
+    color: white !important;
+    border-color: rgba(255,255,255,0.5) !important;
+}
+
+.cta-blok .btn-outline:hover {
+    background: rgba(255,255,255,0.1) !important;
+    border-color: white !important;
+}
+
+.cta-single {
+    text-align: center;
+}
+
+.cta-single h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 28px;
+    color: #F7C112;
+    margin: 0 0 12px 0;
+}
+
+.cta-single p {
+    color: rgba(255,255,255,0.75);
+    font-size: 16px;
+    margin: 0 0 28px 0;
+}
+
+/* ── Oplossingen (hoornaars) ── */
+
+.oplossing-blok {
+    margin-bottom: 0;
+    padding: 48px 0;
+}
+
+.oplossing-blok:first-of-type {
+    padding-top: 0;
+}
+
+.oplossing-header {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.oplossing-header h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #1B2F44;
+    margin: 0;
+}
+
+.oplossing-tag {
+    font-size: 13px;
+    font-weight: 600;
+    color: #F7C112;
+    background: #1B2F44;
+    padding: 4px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+    letter-spacing: 0.3px;
+}
+
+.oplossing-tekst p {
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 16px;
+    max-width: 760px;
+    color: #3A4A5A;
+}
+
+.oplossing-specs {
+    margin-top: 24px;
+    background: #F4EDE3;
+    border-radius: 10px;
+    padding: 20px 24px;
+    display: inline-block;
+    min-width: 280px;
+}
+
+.oplossing-specs h4 {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: #4A5968;
+    margin: 0 0 12px 0;
+}
+
+.oplossing-specs ul {
+    margin: 0;
+    padding-left: 18px;
+}
+
+.oplossing-specs li {
+    font-size: 14px;
+    color: #1B2F44;
+    margin-bottom: 6px;
+    line-height: 1.5;
+}
+
+.oplossing-divider {
+    height: 1px;
+    background: #E8DDD0;
+}
+
+/* ── Contact pagina ── */
+
+.contact-layout {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 60px;
+    align-items: start;
+}
+
+@media (max-width: 860px) {
+    .contact-layout { grid-template-columns: 1fr; }
+}
+
+.contact-form-blok h2,
+.contact-info-blok h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #1B2F44;
+    margin: 0 0 24px 0;
+}
+
+.contact-gegevens {
+    background: #F4EDE3;
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+}
+
+.contact-gegevens p {
+    margin: 0 0 6px 0;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #1B2F44;
+}
+
+.contact-gegevens a {
+    color: #1B2F44;
+    text-decoration: underline;
+}
+
+.contact-note {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #5A6B7A;
+    margin: 0;
+}
+
+/* ── FAQ ── */
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px 48px;
+    margin-top: 8px;
+}
+
+@media (max-width: 720px) {
+    .faq-grid { grid-template-columns: 1fr; }
+}
+
+.faq-item h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1B2F44;
+    margin: 0 0 8px 0;
+    line-height: 1.4;
+}
+
+.faq-item p {
+    font-size: 14px;
+    line-height: 1.75;
+    color: #4A5968;
+    margin: 0;
+}
+
+/* ═══════════════════════════════════════════════
+   UPDATE — extra stijlen bij revisie 2
+═══════════════════════════════════════════════ */
+
+/* Hero als page-intro maar met extra padding */
+.page-intro-hero {
+    padding: 100px 0 80px;
+}
+
+/* Intro CTA knoppen (bijenkasten, hoornaars) */
+.intro-ctas {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 28px;
+}
+
+/* CTA knoppen in donkere sectie — vaste breedte zodat ze mooi uitlijnen */
+.btn-cta {
+    display: inline-block;
+    min-width: 220px;
+    padding: 13px 24px;
+    font-size: 15px;
+    font-family: 'DM Sans', Arial, sans-serif;
+    font-weight: 700;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+.btn-cta-primary {
+    background: #F7C112;
+    color: #1B2F44;
+    border: 2px solid #F7C112;
+}
+
+.btn-cta-primary:hover {
+    background: white;
+    color: #1B2F44;
+    border-color: white;
+}
+
+.btn-cta-outline {
+    background: transparent;
+    color: white;
+    border: 2px solid rgba(255,255,255,0.6);
+}
+
+.btn-cta-outline:hover {
+    background: rgba(255,255,255,0.12);
+    border-color: white;
+}
+
+/* CTA single: gecentreerd blok */
+.cta-single-inner {
+    text-align: center;
+}
+
+.cta-knoppen {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 24px;
+}
+
+/* Voordeel-tag onder oplossingstitel (10) */
+.oplossing-voordeel {
+    font-size: 14px;
+    font-weight: 700;
+    color: #F7C112;
+    background: #1B2F44;
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin: 0 0 20px 0;
+    letter-spacing: 0.3px;
+}
+
+/* Oplossing-header: enkel titel, geen flex-rij meer */
+.oplossing-header {
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* verhaal-tekst hyperlinks */
+.verhaal-tekst a {
+    color: #1B2F44;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.verhaal-tekst a:hover {
+    color: #F7C112;
+}
+
+/* ── Hero CTA links uitgelijnd (1) ── */
+.hero-ctas-left {
+    justify-content: flex-start;
+}
+
+/* ── CTA blok: flexbox kolom zodat knop altijd onderaan uitlijnt (3) ── */
+.cta-grid .cta-blok {
+    display: flex;
+    flex-direction: column;
+}
+
+.cta-grid .cta-blok p {
+    flex: 1;
+    /* tekst neemt beschikbare ruimte in, knop zakt naar onder */
+}
+
+.cta-grid .cta-blok .btn-cta {
+    margin-top: auto;
+    align-self: flex-start;
+}
+
+/* ═══════════════════════════════════════════════
+   UPDATE — tabs en AH-configurator
+═══════════════════════════════════════════════ */
+
+/* Tab navigatie */
+.config-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 36px;
+    border-bottom: 2px solid #E8DDD0;
+    padding-bottom: 0;
+}
+
+.config-tab {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 24px;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    font-family: 'DM Sans', Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #6B7D8E;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.config-tab:hover {
+    color: #1B2F44;
+}
+
+.config-tab.active {
+    color: #1B2F44;
+    border-bottom-color: #F7C112;
+}
+
+.tab-nr {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    background: #E8DDD0;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 700;
+    color: #1B2F44;
+    transition: background 0.2s ease;
+}
+
+.config-tab.active .tab-nr {
+    background: #1B2F44;
+    color: white;
+}
+
+/* Tab panelen */
+.tab-paneel { display: none; }
+.tab-paneel-active { display: block; }
+
+/* AH configurator */
+.ah-configurator {
+    max-width: 860px;
+}
+
+.ah-intro {
+    margin-bottom: 40px;
+}
+
+.ah-intro h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #1B2F44;
+    margin: 0 0 12px 0;
+}
+
+.ah-intro p {
+    font-size: 15px;
+    color: #5A6B7A;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.ah-product {
+    padding: 36px 0;
+}
+
+.ah-product:first-of-type {
+    padding-top: 0;
+}
+
+.ah-product-header {
+    margin-bottom: 8px;
+}
+
+.ah-product-header h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #1B2F44;
+    margin: 0 0 8px 0;
+}
+
+.ah-product-beschrijving {
+    font-size: 14px;
+    color: #5A6B7A;
+    line-height: 1.65;
+    margin: 0 0 20px 0;
+    max-width: 640px;
+}
+
+.ah-sub-opties {
+    margin-top: 16px;
+    padding: 20px;
+    background: #FDF7F0;
+    border-radius: 12px;
+    border: 1px solid #E8DDD0;
+}
+
+.ah-divider {
+    height: 1px;
+    background: #E8DDD0;
+}
+
+.ah-info-blok {
+    margin-top: 40px;
+    padding: 20px 24px;
+    background: #F4EDE3;
+    border-radius: 10px;
+    border-left: 4px solid #F7C112;
+}
+
+.ah-info-blok p {
+    font-size: 14px;
+    color: #4A5968;
+    line-height: 1.65;
+    margin: 0 0 8px 0;
+}
+
+.ah-meer-link {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1B2F44;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.ah-meer-link:hover {
+    color: #F7C112;
+}
+
+/* Input velden in AH sectie */
+.config-input {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 14px;
+    font-family: 'DM Sans', Arial, sans-serif;
+    color: #1B2F44;
+    background: white;
+    border: 1.5px solid rgba(27, 47, 68, 0.15);
+    border-radius: 8px;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease;
+}
+
+.config-input:focus {
+    outline: none;
+    border-color: #1B2F44;
+    box-shadow: 0 0 0 3px rgba(27, 47, 68, 0.07);
+}
+
+.config-textarea {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 14px;
+    font-family: 'DM Sans', Arial, sans-serif;
+    color: #1B2F44;
+    background: white;
+    border: 1.5px solid rgba(27, 47, 68, 0.15);
+    border-radius: 8px;
+    box-sizing: border-box;
+    resize: vertical;
+    min-height: 80px;
+    transition: border-color 0.2s ease;
+}
+
+.config-textarea:focus {
+    outline: none;
+    border-color: #1B2F44;
+    box-shadow: 0 0 0 3px rgba(27, 47, 68, 0.07);
+}
+
+/* ═══════════════════════════════════════════════
+   UPDATE — footer, subtitle, AH layout
+═══════════════════════════════════════════════ */
+
+/* (3) Footer volledig doorlopen, witte tekst */
+.footer {
+    background: #1B2F44 !important;
+    color: white !important;
+    padding: 32px 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+}
+
+.footer .container {
+    color: white !important;
+}
+
+/* (3) Page-subtitle op configurator in witte tint */
+.configurator-page-wrapper .page-subtitle {
+    color: #6B8099;
+}
+
+/* (6) AH configurator layout: panels naast elkaar zoals config-left */
+.config-ah-layout {
+    max-width: 860px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.ah-config-panel {
+    /* erft config-panel stijl, voordeel-tag na beschrijving */
+}
+
+.ah-config-panel .ah-product-beschrijving {
+    font-size: 14px;
+    color: #5A6B7A;
+    line-height: 1.65;
+    margin: 0 0 8px 0;
+}
+
+.ah-config-panel .oplossing-voordeel {
+    margin-bottom: 20px;
+}
+
+/* ah-sub-opties: zelfde kleur als config-panel achtergrond */
+.ah-sub-opties {
+    margin-top: 14px;
+    padding: 20px;
+    background: #FDF7F0;
+    border-radius: 12px;
+    border: 1px solid #E8DDD0;
+}
+
+/* Links in AH beschrijvingen */
+.ah-config-panel a {
+    color: #1B2F44;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.ah-config-panel a:hover {
+    color: #F7C112;
+}
+
+/* ═══════════════════════════════════════════════
+   UPDATE — AH configurator stijlen, range, sticky fix
+═══════════════════════════════════════════════ */
+
+/* (1) Sticky top verhoogd zodat preview-card altijd volledig zichtbaar */
+.config-right {
+    position: sticky !important;
+    top: 112px !important;
+}
+
+/* AH toevoegen-knop: breed zoals add-btn maar geel */
+.add-btn-ah {
+    grid-column: 1 / -1;
+    background: #F7C112 !important;
+    color: #1B2F44 !important;
+    border-style: solid !important;
+    border-color: #F7C112 !important;
+    font-size: 12px !important;
+    letter-spacing: 0.8px !important;
+}
+
+.add-btn-ah:hover {
+    background: #e5b300 !important;
+    border-color: #e5b300 !important;
+    color: #1B2F44 !important;
+    box-shadow: 0 4px 12px rgba(247,193,18,0.35) !important;
+}
+
+/* AH product beschrijving in panels */
+.ah-product-beschrijving {
+    font-size: 14px;
+    color: #5A6B7A;
+    line-height: 1.6;
+    margin: 0 0 16px 0;
+    max-width: 680px;
+}
+
+.ah-product-beschrijving a {
+    color: #1B2F44;
+    text-decoration: underline;
+}
+
+/* Range slider styling */
+input[type="range"] {
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: #E8DDD0;
+    outline: none;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 8px 0 4px;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #1B2F44;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    background: #F7C112;
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #1B2F44;
+    cursor: pointer;
+    border: none;
+}
+
+.range-val {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1B2F44;
+    font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* AH preview card (rechterkolom van AH tab) */
+.ah-preview-placeholder {
+    padding: 24px 20px;
+}
+
+.ah-preview-tekst {
+    font-size: 13px;
+    color: #6B7D8E;
+    line-height: 1.6;
+    margin: 0 0 16px 0;
+    text-align: center;
+}
+
+.ah-preview-lijst {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.ah-preview-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background: #FDF7F0;
+    border-radius: 8px;
+    border: 1px solid #E8DDD0;
+}
+
+.ah-preview-naam {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1B2F44;
+}
+
+/* AH bestel-kaart in overzicht */
+.ah-bestel-kaart .bestel-visual {
+    background: #1B2F44;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ah-icoon-tekst {
+    font-size: 18px;
+    font-weight: 700;
+    color: #F7C112;
+    font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* Bestel-beschrijving iets kleiner voor opties */
+.bestel-beschrijving {
+    font-size: 12px !important;
+    line-height: 1.5 !important;
+}
+
+/* ═══════════════════════════════════════════════
+   UPDATE — AH toevoegen-rij, knopbreedte, selectieveval
+═══════════════════════════════════════════════ */
+
+/* (1) Toevoegen-knop breedte = één kolom van options-grid */
+.ah-toevoegen-rij {
+    margin-top: 20px;
+    display: flex;
+}
+
+.add-btn-ah {
+    /* Niet full-width: past in één kolom van de grid */
+    width: auto !important;
+    min-width: 0 !important;
+    flex: 0 0 auto;
+    padding: 13px 20px !important;
+    font-size: 11px !important;
+}
+
+/* (2) Geen .add-buttons wrapper meer in AH — knop staat onderaan */
+/* .add-buttons in AH-panelen worden niet meer gebruikt */
+
+/* Range label met ingesloten waarde */
+.field-group label {
+    display: block !important;
+}
+
+/* (3) AH bestelcontrols analoog aan kastcontrols */
+.ah-bestel-kaart .bestel-controls {
+    margin: 8px 0 4px !important;
+}
+
+/* ── Kolommen-label naast lengte ── */
+.range-kolommen {
+    font-size: 12px;
+    font-weight: 600;
+    color: #F7C112;
+    background: #1B2F44;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-left: 4px;
+    font-family: 'DM Sans', Arial, sans-serif;
+    letter-spacing: 0.2px;
+}
+
+/* AH-tab: geen rechterkolom, volle breedte voor config-left */
+#tab-bescherming .config-layout {
+    grid-template-columns: 1fr;
+}
+
+#tab-bescherming .config-left {
+    max-width: 860px;
+}
+
+/* ── Koldo Belasko illustratie ── */
+.belasko-illustratie {
+    margin: 16px 0 4px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fdf7f0;
+    border: 1px solid #E8DDD0;
+}
+
+.belasko-illustratie img {
+    width: 100%;
+    height: auto;
+    display: block;
+    mix-blend-mode: multiply;
+}
+
+/* ── Verwijder-knop: klein en discreet, rechts uitgelijnd ── */
+.verwijder-btn {
+    display: inline-block !important;
+    width: auto !important;
+    background: none !important;
+    border: none !important;
+    color: #9AA5B0 !important;
+    font-size: 11px !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.3px !important;
+    text-decoration: underline !important;
+    cursor: pointer !important;
+    padding: 2px 0 !important;
+    margin-top: 6px !important;
+    transition: color 0.15s !important;
+}
+
+.verwijder-btn:hover {
+    color: #C0392B !important;
+    background: none !important;
+    box-shadow: none !important;
+}
+
+/* Bestel-info: verwijder link rechts uitlijnen */
+.bestel-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* ── Belasko hoogte toelichting ── */
+.belasko-hoogte-toelichting {
+    font-size: 12px;
+    color: #7A8A96;
+    font-style: italic;
+    margin: 10px 0 0;
+    padding: 8px 12px;
+    background: #F5F0EA;
+    border-left: 3px solid #D4C5B0;
+    border-radius: 0 6px 6px 0;
+}
+
+/* ── SVG illustraties in AH-panelen ── */
+.ah-svg-illustratie {
+    margin: 16px 0 4px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fdf7f0;
+    border: 1px solid #E8DDD0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    min-height: 140px;
+}
+
+.ah-svg-illustratie svg,
+.ah-svg-illustratie img {
+    max-height: 220px;
+    width: auto;
+    display: block;
+}
+
+/* ── Afmetingen-groep label in Belasko ── */
+.belasko-groep-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: #9AA5B0;
+    margin: 4px 0 8px;
+}
+
+/* ── Inline bevestigingsbericht na formulierverzending ── */
+.bevestiging-bericht {
+    padding: 20px 24px;
+    background: #EDF5EC;
+    border-left: 4px solid #5B9A56;
+    border-radius: 0 8px 8px 0;
+    margin-top: 16px;
+}
+
+.bevestiging-bericht p {
+    margin: 0;
+    color: #2D5A29;
+    font-size: 15px;
+    line-height: 1.6;
 }
