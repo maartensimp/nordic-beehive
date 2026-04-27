@@ -1,0 +1,47 @@
+<svg width="370" height="740" viewBox="0 0 370 740" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_31_25)">
+<rect width="370" height="740" fill="white"/>
+
+<!-- Basiselementen harp (altijd zichtbaar) -->
+<rect x="1.17084" y="-1.76894" width="29" height="797" transform="matrix(0.979925 -0.199368 -0.199368 -0.979925 344.165 787.051)" fill="#F4C678" stroke="#28445A" stroke-width="3"/>
+<rect x="1.17084" y="-1.76894" width="29" height="55" transform="matrix(0.979925 -0.199368 -0.199368 -0.979925 196.234 59.9465)" fill="#F4C678" stroke="#28445A" stroke-width="3"/>
+<line x1="336" y1="738.5" x2="365" y2="738.5" stroke="#28445A" stroke-width="3"/>
+<rect x="24.1868" y="788.551" width="29" height="797" transform="rotate(-168.5 24.1868 788.551)" fill="#F4C678" stroke="#28445A" stroke-width="3"/>
+<rect x="172.187" y="61.4465" width="29" height="55" transform="rotate(-168.5 172.187 61.4465)" fill="#F4C678" stroke="#28445A" stroke-width="3"/>
+<line y1="-1.5" x2="29" y2="-1.5" transform="matrix(-1 0 0 1 34 740)" stroke="#28445A" stroke-width="3"/>
+<rect x="90.5" y="371.5" width="187" height="13" fill="#D9D9D9" stroke="#28445A" stroke-width="3"/>
+<rect x="106.5" y="12.5" width="157" height="237" fill="#2B3B92" stroke="#2B3B92" stroke-width="3"/>
+<line x1="185.5" y1="11" x2="185.5" y2="250" stroke="#28445A" stroke-width="3"/>
+<line x1="105.009" y1="128.5" x2="265.009" y2="129.5" stroke="#28445A" stroke-width="3"/>
+<line x1="104.009" y1="69.5" x2="264.009" y2="70.5" stroke="#28445A" stroke-width="3"/>
+<line x1="105.009" y1="194.5" x2="265.009" y2="195.5" stroke="#28445A" stroke-width="3"/>
+
+<!-- OPVANGBAK (verborgen by default) -->
+<g id="harp-opvangbak-svg" display="none">
+  <rect x="31.5" y="691.5" width="307" height="47" fill="#D9D9D9" stroke="#28445A" stroke-width="3"/>
+  <line x1="90" y1="691.5" x2="90" y2="738.5" stroke="#28445A" stroke-width="2"/>
+  <line x1="150" y1="691.5" x2="150" y2="738.5" stroke="#28445A" stroke-width="2"/>
+  <line x1="210" y1="691.5" x2="210" y2="738.5" stroke="#28445A" stroke-width="2"/>
+  <line x1="270" y1="691.5" x2="270" y2="738.5" stroke="#28445A" stroke-width="2"/>
+</g>
+
+<!-- PV-PANEEL (verborgen by default) -->
+<g id="harp-pv-svg" display="none">
+  <rect x="270" y="260" width="85" height="52" rx="4" fill="#1a2f5e" stroke="#28445A" stroke-width="2"/>
+  <line x1="270" y1="277" x2="355" y2="277" stroke="#4a6fa5" stroke-width="1.5"/>
+  <line x1="270" y1="294" x2="355" y2="294" stroke="#4a6fa5" stroke-width="1.5"/>
+  <line x1="270" y1="311" x2="355" y2="311" stroke="#4a6fa5" stroke-width="1.5"/>
+  <line x1="298" y1="260" x2="298" y2="312" stroke="#4a6fa5" stroke-width="1.5"/>
+  <line x1="326" y1="260" x2="326" y2="312" stroke="#4a6fa5" stroke-width="1.5"/>
+  <!-- Kabeltje naar harp -->
+  <line x1="270" y1="286" x2="263" y2="286" stroke="#28445A" stroke-width="2"/>
+  <line x1="263" y1="286" x2="263" y2="250" stroke="#28445A" stroke-width="2"/>
+</g>
+
+</g>
+<defs>
+<clipPath id="clip0_31_25">
+<rect width="370" height="740" fill="white"/>
+</clipPath>
+</defs>
+</svg>
