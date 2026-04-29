@@ -1,0 +1,36 @@
+<svg width="340" height="234" viewBox="0 0 340 234" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#selectieve-val-basis)">
+<rect width="340" height="234" fill="#FDF7F0"/>
+<rect x="30" y="30" width="280" height="28" rx="3" fill="#D9D9D9" stroke="#28445A" stroke-width="3"/>
+<rect x="30" y="55" width="280" height="154" rx="3" fill="#EAF3FA" stroke="#28445A" stroke-width="3"/>
+
+
+
+<rect x="30" y="75" width="10" height="104" rx="2" fill="#F7C112" stroke="#28445A" stroke-width="2.5"/>
+<line x1="32" y1="85"  x2="38" y2="85"  stroke="#28445A" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="32" y1="94"  x2="38" y2="94"  stroke="#28445A" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="32" y1="103" x2="38" y2="103" stroke="#28445A" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="32" y1="112" x2="38" y2="112" stroke="#28445A" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="32" y1="121" x2="38" y2="121" stroke="#28445A" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="32" y1="130" x2="38" y2="130" stroke="#28445A" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="32" y1="139" x2="38" y2="139" stroke="#28445A" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="32" y1="148" x2="38" y2="148" stroke="#28445A" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="32" y1="157" x2="38" y2="157" stroke="#28445A" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="32" y1="166" x2="38" y2="166" stroke="#28445A" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="32" y1="175" x2="38" y2="175" stroke="#28445A" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M310 75 L235 113 L235 127 L310 179 Z" fill="#8B2A1A" stroke="#28445A" stroke-width="2.5" stroke-linejoin="round"/>
+<line x1="292" y1="86"  x2="307" y2="86"  stroke="#FDF7F0" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="10 5" stroke-dashoffset="0"/>
+<line x1="278" y1="93"  x2="307" y2="93"  stroke="#FDF7F0" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="10 5" stroke-dashoffset="-6"/>
+<line x1="264" y1="100" x2="307" y2="100" stroke="#FDF7F0" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="10 5" stroke-dashoffset="0"/>
+<line x1="250" y1="107" x2="307" y2="107" stroke="#FDF7F0" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="10 5" stroke-dashoffset="-6"/>
+<line x1="241" y1="114" x2="307" y2="114" stroke="#FDF7F0" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="10 5" stroke-dashoffset="0"/>
+<line x1="241" y1="121" x2="307" y2="121" stroke="#FDF7F0" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="10 5" stroke-dashoffset="-6"/>
+<line x1="241" y1="128" x2="307" y2="128" stroke="#FDF7F0" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="10 5" stroke-dashoffset="0"/>
+<line x1="254" y1="135" x2="307" y2="135" stroke="#FDF7F0" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="10 5" stroke-dashoffset="-6"/>
+<line x1="268" y1="142" x2="307" y2="142" stroke="#FDF7F0" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="10 5" stroke-dashoffset="0"/>
+<line x1="282" y1="149" x2="307" y2="149" stroke="#FDF7F0" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="10 5" stroke-dashoffset="-6"/>
+<line x1="296" y1="156" x2="307" y2="156" stroke="#FDF7F0" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="10 5" stroke-dashoffset="0"/>
+<line x1="304" y1="163" x2="307" y2="163" stroke="#FDF7F0" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="10 5" stroke-dashoffset="-6"/>
+</g>
+<defs><clipPath id="selectieve-val-basis"><rect width="340" height="234" fill="white"/></clipPath></defs>
+</svg>
