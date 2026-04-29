@@ -1949,3 +1949,164 @@ input[type="range"]::-moz-range-thumb {
     font-size: 15px;
     line-height: 1.6;
 }
+
+/* ── Vakmanschap sectie ── */
+
+/* ── Vakmanschap sectie ── */
+.vakmanschap-section {
+    background: #FDF7F0;
+}
+
+.vakmanschap-grid {
+    display: flex;
+    gap: 12px;
+    margin-top: 32px;
+}
+
+.vk-kast {
+    flex: 0 0 38%;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+}
+
+.vk-kast img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s ease;
+}
+
+.vk-kast:hover img {
+    transform: scale(1.025);
+}
+
+.vakmanschap-rechts {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.vakmanschap-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.vakmanschap-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s ease;
+}
+
+.vakmanschap-item:hover img {
+    transform: scale(1.025);
+}
+
+.vakmanschap-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(27,47,68,0.80) 0%, transparent 100%);
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    padding: 24px 14px 10px;
+    pointer-events: none;
+}
+
+@media (max-width: 700px) {
+    .vakmanschap-grid {
+        flex-direction: column;
+    }
+    .vk-kast {
+        flex: 0 0 auto;
+    }
+    .vakmanschap-rechts {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* ── Lightbox ── */
+.lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10,18,28,0.93);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox.actief {
+    display: flex;
+}
+
+.lightbox-inhoud {
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.lightbox-inhoud img {
+    max-width: 88vw;
+    max-height: 82vh;
+    object-fit: contain;
+    border-radius: 8px;
+    display: block;
+}
+
+.lightbox-inhoud p {
+    color: rgba(255,255,255,0.75);
+    font-size: 13px;
+    letter-spacing: 0.3px;
+    margin: 0;
+}
+
+.lightbox-sluit {
+    position: fixed;
+    top: 20px;
+    right: 28px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 36px;
+    cursor: pointer;
+    line-height: 1;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+    z-index: 10000;
+}
+
+.lightbox-sluit:hover { opacity: 1; }
+
+.lightbox-pijl {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.12);
+    border: none;
+    color: white;
+    font-size: 48px;
+    line-height: 1;
+    padding: 8px 18px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background 0.2s;
+    z-index: 10000;
+}
+
+.lightbox-pijl:hover { background: rgba(255,255,255,0.25); }
+.lightbox-links  { left:  16px; }
+.lightbox-rechts { right: 16px; }

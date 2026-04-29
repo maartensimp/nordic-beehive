@@ -132,6 +132,93 @@
     </div>
 </section>
 
+<!-- VAKMANSCHAP -->
+<section class="section vakmanschap-section">
+    <div class="container">
+        <h2>Een eerlijke blik op het vakmanschap</h2>
+        <p class="kleuren-intro">
+            Deze foto's zijn bewust genomen voor het verven. Zo ziet u precies wat er onder de verf zit: massief Douglas hout, afgewerkt met vingerlas-verbindingen, ingefreesd handvat en raamsteun in roestvrij staal. Niets verborgen, alles gemaakt om te duren.
+        </p>
+        <div class="vakmanschap-grid">
+            <div class="vakmanschap-item vk-kast" onclick="openLightbox(0)">
+                <img src="images/Kast_onbehandeld_crop.jpeg" alt="Volledig gemonteerde bijenkast in onbehandeld Douglas hout">
+                <span class="vakmanschap-label">De kast, klaar voor het verven</span>
+            </div>
+            <div class="vakmanschap-rechts">
+                <div class="vakmanschap-item" onclick="openLightbox(1)">
+                    <img src="images/Broedbak_crop.jpeg" alt="Broedbak in massief Douglas hout">
+                    <span class="vakmanschap-label">Broedbak</span>
+                </div>
+                <div class="vakmanschap-item" onclick="openLightbox(2)">
+                    <img src="images/Honingzolder_crop.jpeg" alt="Honingzolder in massief Douglas hout">
+                    <span class="vakmanschap-label">Honingzolder</span>
+                </div>
+                <div class="vakmanschap-item" onclick="openLightbox(3)">
+                    <img src="images/Detail_handvat_crop.jpeg" alt="Ingefreesd handvat in de zijwand">
+                    <span class="vakmanschap-label">Ingefreesd handvat</span>
+                </div>
+                <div class="vakmanschap-item" onclick="openLightbox(4)">
+                    <img src="images/Detail_vingerlas_crop.jpeg" alt="Vingerlas-verbinding aan de hoek">
+                    <span class="vakmanschap-label">Vingerlas-verbinding</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" class="lightbox" onclick="sluitLightbox(event)">
+    <button class="lightbox-sluit" onclick="sluitLightbox()">&times;</button>
+    <button class="lightbox-pijl lightbox-links" onclick="event.stopPropagation(); navigeerLightbox(-1)">&#8249;</button>
+    <div class="lightbox-inhoud">
+        <img id="lightbox-img" src="" alt="">
+        <p id="lightbox-label"></p>
+    </div>
+    <button class="lightbox-pijl lightbox-rechts" onclick="event.stopPropagation(); navigeerLightbox(1)">&#8250;</button>
+</div>
+
+<script>
+var lbFotos = [
+    { src: "images/Kast_onbehandeld.jpeg", label: "De kast, klaar voor het verven" },
+    { src: "images/Broedbak.jpeg",         label: "Broedbak" },
+    { src: "images/Honingzolder.jpeg",     label: "Honingzolder" },
+    { src: "images/Detail_handvat.jpeg",   label: "Ingefreesd handvat" },
+    { src: "images/Detail_vingerlas.jpeg", label: "Vingerlas-verbinding" }
+];
+var lbHuidig = 0;
+
+function openLightbox(index) {
+    lbHuidig = index;
+    toonLightboxFoto();
+    document.getElementById("lightbox").classList.add("actief");
+    document.body.style.overflow = "hidden";
+}
+
+function sluitLightbox(e) {
+    if (e && e.target !== document.getElementById("lightbox")) return;
+    document.getElementById("lightbox").classList.remove("actief");
+    document.body.style.overflow = "";
+}
+
+function navigeerLightbox(richting) {
+    lbHuidig = (lbHuidig + richting + lbFotos.length) % lbFotos.length;
+    toonLightboxFoto();
+}
+
+function toonLightboxFoto() {
+    document.getElementById("lightbox-img").src   = lbFotos[lbHuidig].src;
+    document.getElementById("lightbox-label").textContent = lbFotos[lbHuidig].label;
+}
+
+document.addEventListener("keydown", function(e) {
+    var lb = document.getElementById("lightbox");
+    if (!lb.classList.contains("actief")) return;
+    if (e.key === "ArrowLeft")  navigeerLightbox(-1);
+    if (e.key === "ArrowRight") navigeerLightbox(1);
+    if (e.key === "Escape")     { lb.classList.remove("actief"); document.body.style.overflow = ""; }
+});
+</script>
+
 <!-- CTA (7) — beide knoppen met witte omranding conform homepage -->
 <section class="cta-section cta-single">
     <div class="container cta-single-inner">
