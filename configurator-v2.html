@@ -10,8 +10,37 @@
     <!-- Formulier altijd verborgen bij laden — vóór enig JS -->
     <style>
         #formulierBlok { display: none; }
-        /* Snapshot helper: buiten viewport zodat zoom-flash niet zichtbaar is */
+        .hidden { display: none; }
+        .hidden { display: none; }
         #snapshotHelper { position:fixed; left:-9999px; top:0; visibility:hidden; pointer-events:none; zoom:1; }
+
+        /* Footer altijd onderaan via padding op wrapper */
+        .configurator-page-wrapper {
+            min-height: calc(100vh - 120px);
+            padding-bottom: 48px;
+        }
+
+        /* Verwijder-knop kastkaarten: match exact de knop die configurator.js aanmaakt */
+        #bestellingLijst .bestel-info > button,
+        #bestellingLijst .bestel-info button:not([class]) {
+            display: inline !important;
+            width: auto !important;
+            background: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            color: #9AA5B0 !important;
+            font-size: 11px !important;
+            font-weight: 500 !important;
+            text-decoration: underline !important;
+            cursor: pointer !important;
+            padding: 2px 0 !important;
+            margin-top: 6px !important;
+            letter-spacing: 0 !important;
+        }
+        #bestellingLijst .bestel-info > button:hover,
+        #bestellingLijst .bestel-info button:not([class]):hover {
+            color: #C0392B !important;
+        }
     </style>
 </head>
 
@@ -556,14 +585,20 @@
                 </div>
         </div>
     </div>
+    </div><!-- /tab-bescherming -->
 
-    <!-- AH SELECTIE + ACTIEKNOPPEN — volledig buiten bestellingBlok -->
-    <div id="overallSelectieBlok" class="bestelling-section hidden">
-
-        <!-- AH items — geen titel, naadloos onder kastenselectie -->
-        <div id="ahSelectieBlok" class="hidden">
+    <!-- BESTELLINGSOVERZICHT KASTEN — door configurator.js beheerd -->
+    <div class="bestelling-section">
+        <div id="bestellingBlok" class="hidden" style="display:none;">
+            <h3 id="bestellingTitel" class="hidden overzicht-titel" style="display:none;">Uw selectie</h3>
+            <div id="bestellingLijst"></div>
             <div id="ahBestellingLijst"></div>
+            <div id="bestellingTotaal"></div>
         </div>
+    </div>
+
+    <!-- AH SELECTIE + ACTIEKNOPPEN -->
+    <div id="overallSelectieBlok" class="bestelling-section" style="display:none;">
 
         <!-- Actieknoppen -->
         <div id="actieBlok">
@@ -640,7 +675,7 @@
 </div><!-- /configurator-page-wrapper -->
 
 <footer class="footer">
-    <div class="container">© 2026 Nordic Beehive – Ambachtelijk gemaakt in België</div>
+    <div class="container">© 2026 Nordic Beehive – Maarten Simpelaere &nbsp;|&nbsp; info@nordicbeehive.be</div>
 </footer>
 
 <script src="html2canvas.min.js"></script>
@@ -759,8 +794,10 @@ function harpSVGSnapshot(opvangbak, pv) {
 function mezenSVGSnapshot() {
     var kastKleur = getMezenKastKleur();
     var dakKleur  = getMezenDakKleur();
+    /* Witte achtergrond zodat wit dak zichtbaar blijft */
+    var bg = (dakKleur === "#F0EDED") ? "#F5F5F5" : SVG_BG;
     var svgStr = '<svg width="160" height="400" viewBox="0 0 160 400" fill="none" xmlns="http://www.w3.org/2000/svg">'
-        + '<rect width="160" height="400" fill="' + SVG_BG + '"/>'
+        + '<rect width="160" height="400" fill="' + bg + '"/>'
         + '<rect x="21.5" y="1.5" width="117" height="397" fill="' + kastKleur + '" stroke="#28445A" stroke-width="3"/>'
         + '<rect x="21.5" y="116.5" width="117" height="237" fill="' + kastKleur + '" stroke="#28445A" stroke-width="3"/>'
         + '<rect x="1.5" y="110.5" width="20" height="243" fill="' + kastKleur + '" stroke="#28445A" stroke-width="3"/>'
@@ -867,22 +904,15 @@ function wijzigAHAantal(index, delta) {
 }
 
 /* ═══════════════════════════════
-   RENDER AH — volledig onafhankelijk
-   van configurator.js / bestellingBlok
+   RENDER AH — toont AH-items in bestellingLijst
 ═══════════════════════════════ */
 function renderAH() {
-    var heeftAH          = ahBestelling.length > 0;
-    var overallBlok      = document.getElementById("overallSelectieBlok");
-    var ahSelectie       = document.getElementById("ahSelectieBlok");
-    var ahContainer      = document.getElementById("ahBestellingLijst");
+    var heeftAH     = ahBestelling.length > 0;
+    var heeftKasten = (typeof bestelling !== "undefined" && bestelling.length > 0);
 
-    /* Toon/verberg het AH-gedeelte */
-    if (ahSelectie) ahSelectie.classList.toggle("hidden", !heeftAH);
-
-    /* Toon de overkoepelende wrapper als er iets is (AH of kasten) */
     updateOverallBlok();
 
-    /* Herrender de AH-kaarten */
+    var ahContainer = document.getElementById("ahBestellingLijst");
     if (!ahContainer) return;
     ahContainer.innerHTML = "";
 
@@ -913,6 +943,7 @@ function renderAH() {
         var aantal = item.aantal || 1;
         var div = document.createElement("div");
         div.className = "bestel-kaart ah-bestel-kaart";
+
         var visualDiv = document.createElement("div");
         if ((item.type === "mezenkast" || item.type === "harp" || item.type === "selectieveval" || item.type === "belasko") && item.svgSnapshot) {
             visualDiv.className = "bestel-visual";
@@ -943,20 +974,30 @@ function renderAH() {
         ahContainer.appendChild(div);
     });
 
+    /* Toon/verberg bestellingBlok op basis van totaal */
+    var blok  = document.getElementById("bestellingBlok");
+    var titel = document.getElementById("bestellingTitel");
+    if (blok) {
+        if (heeftKasten || heeftAH) {
+            blok.classList.remove("hidden");
+            if (titel) titel.classList.remove("hidden");
+        } else {
+            blok.classList.add("hidden");
+            if (titel) titel.classList.add("hidden");
+        }
+    }
+
     sessionStorage.setItem("nb_ah_bestelling", JSON.stringify(ahBestelling));
     updateBevestigBlok();
 }
 
 /* ═══════════════════════════════
-   OVERALL BLOK — toont als kasten
-   OF AH-items aanwezig zijn
+   OVERALL BLOK
 ═══════════════════════════════ */
 function updateOverallBlok() {
-    var overallBlok = document.getElementById("overallSelectieBlok");
-    if (!overallBlok) return;
-    var heeftKasten = (typeof bestelling !== "undefined" && bestelling.length > 0);
-    var heeftAH     = ahBestelling.length > 0;
-    overallBlok.classList.toggle("hidden", !(heeftKasten || heeftAH));
+    /* overallSelectieBlok is altijd zichtbaar —
+       bestellingBlok wordt door configurator.js zelf beheerd */
+    updateBevestigBlok();
 }
 
 function updateBevestigBlok() {
@@ -1043,83 +1084,107 @@ window.addEventListener("load", function() {
         });
     }
 
-    /* ── Neutraliseer dubbele submit van configurator.js ── */
-    /* configurator.js registreert zijn eigen submit-handler die een tweede mail stuurt.
-       We vervangen het formulier-element zodat alle oude listeners verdwijnen,
-       en registreren daarna alleen onze eigen handler opnieuw. */
-    var oudForm = document.getElementById("contactForm");
-    if (oudForm) {
-        var nieuwForm = oudForm.cloneNode(true);
-        oudForm.parentNode.replaceChild(nieuwForm, oudForm);
-
-        nieuwForm.addEventListener("submit", function(e) {
-            e.preventDefault();
-            var overzicht = (typeof genereerBestelOverzicht === "function") ? genereerBestelOverzicht() : "";
-            document.getElementById("bestelInhoud").value = overzicht;
-
-            var type    = document.getElementById("formulierType").value;
-            var verzend = document.getElementById("verzendBtn");
-            if (verzend) { verzend.disabled = true; verzend.textContent = "Bezig met verzenden…"; }
-
-            var data = new FormData(nieuwForm);
-            data.append("_replyto", document.getElementById("email").value);
-            data.append("_subject", type === "bestelling"
-                ? "Nieuwe bestelling Nordic Beehive – " + document.getElementById("naam").value
-                : "Vraag Nordic Beehive – " + document.getElementById("naam").value);
-
-            fetch("https://formspree.io/f/xlgwvrpq", {
-                method: "POST",
-                body: data,
-                headers: { "Accept": "application/json" }
-            })
-            .then(function(resp) {
-                var bericht = document.getElementById("bevestigingBericht");
-                var tekst   = document.getElementById("bevestigingTekst");
-                if (resp.ok) {
-                    nieuwForm.style.display = "none";
-                    bericht.style.display = "block";
-                    tekst.textContent = type === "bestelling"
-                        ? "Uw bestelling is goed ontvangen. U hoort van ons binnen de 5 werkdagen met een orderbevestiging en levertermijn."
-                        : "Uw vraag is goed ontvangen. We nemen zo snel mogelijk contact met u op.";
-                } else {
-                    if (verzend) { verzend.disabled = false; verzend.textContent = "Verzenden"; }
-                    alert("Er liep iets mis. Probeer opnieuw of mail naar info@nordicbeehive.be.");
+    /* Formulier submit: configurator.js doet de mailing zelf.
+       Wij tonen enkel het inline bevestigingsbericht na zijn response. */
+    var form = document.getElementById("contactForm");
+    if (form) {
+        form.addEventListener("submit", function() {
+            /* configurator.js doet e.preventDefault() en fetch — 
+               wij luisteren na zijn success via een korte poll */
+            var check = setInterval(function() {
+                if (form.style.display === "none" || 
+                    document.querySelector(".hidden[id='formulierBlok']")) {
+                    clearInterval(check);
                 }
-            })
-            .catch(function() {
-                if (verzend) { verzend.disabled = false; verzend.textContent = "Verzenden"; }
-                alert("Geen verbinding. Probeer opnieuw of mail naar info@nordicbeehive.be.");
-            });
+            }, 200);
         });
     }
 
     /* Initialiseer SVG-kleuren */
     updateMezenkastSVG();
 
-    /* Knoplisteners */
-    var bevestigOud = document.getElementById("bevestigBestelling");
-    if (bevestigOud) {
-        var b1 = bevestigOud.cloneNode(true);
-        bevestigOud.parentNode.replaceChild(b1, bevestigOud);
-        b1.addEventListener("click", function() { toonFormulier("bestelling"); });
-    }
-    var vraagOud = document.getElementById("stelVraag");
-    if (vraagOud) {
-        var b2 = vraagOud.cloneNode(true);
-        vraagOud.parentNode.replaceChild(b2, vraagOud);
-        b2.addEventListener("click", function() { toonFormulier("info"); });
-    }
+    /* Initialiseer SVG-kleuren */
+    updateMezenkastSVG();
+
+    /* Knoplisteners: configurator.js beheert bevestigBestelling en stelVraag zelf.
+       We laten die ongemoeid zodat zijn referenties intact blijven. */
     window.updateFormulierWeergave = function() {
-        toonFormulier(document.getElementById("formulierType").value);
+        var type = document.getElementById("formulierType").value;
+        toonFormulier(type);
     };
+
 
     /* Observer op bestellingLijst zodat kastwijzigingen ook overallBlok en bevestigBlok bijwerken */
     var lijstEl = document.getElementById("bestellingLijst");
     if (lijstEl) {
-        new MutationObserver(function() {
+        var obs = new MutationObserver(function(mutations) {
+            /* Alleen reageren op childList mutaties, niet op style-wijzigingen */
+            var heeftChildMutatie = mutations.some(function(m) { return m.type === "childList"; });
+            if (!heeftChildMutatie) return;
+
+            obs.disconnect();
+
             updateOverallBlok();
             updateBevestigBlok();
-        }).observe(lijstEl, { childList: true, subtree: true });
+
+            /* Toon bestellingBlok als er kasten of AH zijn */
+            var blok  = document.getElementById("bestellingBlok");
+            var titel = document.getElementById("bestellingTitel");
+            var heeftKasten = (typeof bestelling !== "undefined" && bestelling.length > 0);
+            var heeftAH     = ahBestelling.length > 0;
+            if (blok) blok.classList.toggle("hidden", !(heeftKasten || heeftAH));
+            if (titel) titel.classList.toggle("hidden", !(heeftKasten || heeftAH));
+
+            /* Fix knoppen in bestellingLijst */
+            lijstEl.querySelectorAll(".bestel-kaart").forEach(function(kaart, i) {
+                var info = kaart.querySelector(".bestel-info");
+                if (!info) return;
+
+                /* Hernaam Kast X → Configuratie X */
+                var b = info.querySelector("b");
+                if (b && b.textContent.match(/^Kast\s*\d+$/i)) {
+                    b.textContent = "Configuratie " + (i + 1);
+                }
+
+                /* Stijl knoppen */
+                info.querySelectorAll("button").forEach(function(btn) {
+                    var txt = btn.textContent.trim().toLowerCase();
+                    if (txt === "verwijderen" || txt === "verwijder") {
+                        btn.setAttribute("style", "display:inline-block !important;width:auto !important;background:none !important;border:none !important;box-shadow:none !important;color:#9AA5B0 !important;font-size:11px !important;font-weight:500 !important;letter-spacing:0.3px !important;text-decoration:underline !important;cursor:pointer !important;padding:2px 0 !important;margin-top:6px !important;font-family:'DM Sans',Arial,sans-serif !important;transition:color 0.15s !important;");
+                        btn.onmouseenter = function() { this.style.color = "#C0392B"; };
+                        btn.onmouseleave = function() { this.style.color = "#9AA5B0"; };
+                    } else {
+                        btn.setAttribute("style", "min-width:28px !important;width:28px !important;height:28px !important;border-radius:50% !important;border:1.5px solid rgba(27,47,68,0.18) !important;background:#FDF7F0 !important;font-size:14px !important;display:inline-flex !important;align-items:center !important;justify-content:center !important;padding:0 !important;color:#1B2F44 !important;flex-shrink:0 !important;box-shadow:none !important;text-decoration:none !important;cursor:pointer !important;vertical-align:middle !important;line-height:1 !important;font-family:'DM Sans',Arial,sans-serif !important;");
+                    }
+                });
+            });
+
+            obs.observe(lijstEl, { childList: true, subtree: true });
+        });
+        obs.observe(lijstEl, { childList: true, subtree: true });
+
+    /* Knop-stijlen via polling — werkt onafhankelijk van observer */
+    setInterval(function() {
+        var lijstEl = document.getElementById("bestellingLijst");
+        if (!lijstEl) return;
+        lijstEl.querySelectorAll(".bestel-kaart .bestel-info button").forEach(function(btn) {
+            var txt = btn.textContent.trim().toLowerCase();
+            if (txt === "verwijderen" || txt === "verwijder") {
+                if (btn.getAttribute("data-styled") !== "v") {
+                    btn.setAttribute("style", "display:inline-block !important;width:auto !important;background:none !important;border:none !important;box-shadow:none !important;color:#9AA5B0 !important;font-size:11px !important;font-weight:500 !important;letter-spacing:0.3px !important;text-decoration:underline !important;cursor:pointer !important;padding:2px 0 !important;margin-top:6px !important;font-family:'DM Sans',Arial,sans-serif !important;");
+                    btn.setAttribute("data-styled", "v");
+                    btn.onmouseenter = function() { this.style.color = "#C0392B"; };
+                    btn.onmouseleave = function() { this.style.color = "#9AA5B0"; };
+                }
+            } else {
+                if (btn.getAttribute("data-styled") !== "pm") {
+                    btn.setAttribute("style", "min-width:28px !important;width:28px !important;height:28px !important;border-radius:50% !important;border:1.5px solid rgba(27,47,68,0.18) !important;background:#FDF7F0 !important;font-size:14px !important;display:inline-flex !important;align-items:center !important;justify-content:center !important;padding:0 !important;color:#1B2F44 !important;flex-shrink:0 !important;box-shadow:none !important;text-decoration:none !important;cursor:pointer !important;vertical-align:middle !important;line-height:1 !important;font-family:'DM Sans',Arial,sans-serif !important;");
+                    btn.setAttribute("data-styled", "pm");
+                }
+            }
+        });
+    }, 300);
+
     }
 
     /* Sessie herstel — kasten */
@@ -1146,21 +1211,15 @@ window.addEventListener("load", function() {
         } catch(e) {}
     }
 
-    /* Patch renderBestelling */
+    /* Patch renderBestelling — configurator.js beheert bestellingBlok zelf */
     var _orig = window.renderBestelling;
     window.renderBestelling = function() {
         _orig();
         sessionStorage.setItem("nb_bestelling", JSON.stringify(bestelling));
-        updateOverallBlok();
         updateBevestigBlok();
-
-        /* Hernaam "Kast X" naar "Configuratie X" — alleen kastkaarten */
-        var kastKaarten = document.querySelectorAll("#bestellingLijst .bestel-kaart");
-        kastKaarten.forEach(function(kaart, i) {
-            var b = kaart.querySelector(".bestel-info b");
-            if (b) b.textContent = "Configuratie " + (i + 1);
-        });
+        /* MutationObserver doet de rest (knoppen, labels) */
     };
+
 
     /* Patch genereerBestelOverzicht */
     var _origOvz = window.genereerBestelOverzicht;
@@ -1242,5 +1301,42 @@ window.addEventListener("load", function() {
 });
 </script>
 
+<script>
+/* Polling: toon/verberg selectie op basis van bestelling inhoud */
+(function() {
+    setInterval(function() {
+        var kastItems = (typeof bestelling !== "undefined") ? bestelling.length : 0;
+        var ahItems   = (typeof ahBestelling !== "undefined") ? ahBestelling.length : 0;
+        var heeftIets = kastItems > 0 || ahItems > 0;
+
+        var els = {
+            blok:    document.getElementById("bestellingBlok"),
+            titel:   document.getElementById("bestellingTitel"),
+            overall: document.getElementById("overallSelectieBlok"),
+            bevestig:document.getElementById("bevestigBlok")
+        };
+
+        if (els.blok)    els.blok.style.display    = heeftIets ? "block" : "none";
+        if (els.titel)   els.titel.style.display   = heeftIets ? "block" : "none";
+        if (els.overall) els.overall.style.display = heeftIets ? "block" : "none";
+        if (els.bevestig) els.bevestig.style.display = (kastItems > 0 || ahItems > 0) ? "block" : "none";
+    }, 300);
+})();
+</script>
+<script>
+(function() {
+    setInterval(function() {
+        var kastItems = (typeof bestelling !== "undefined") ? bestelling.length : 0;
+        var ahItems   = (typeof ahBestelling !== "undefined") ? ahBestelling.length : 0;
+        var heeftIets = kastItems > 0 || ahItems > 0;
+        var toon = heeftIets ? "block" : "none";
+        ["bestellingBlok","bestellingTitel","overallSelectieBlok"].forEach(function(id) {
+            var el = document.getElementById(id);
+            if (el) el.style.display = toon;
+        });
+        var bev = document.getElementById("bevestigBlok");
+        if (bev) bev.style.display = toon;
+    }, 300);
+})();
+</script>
 </body>
-</html>

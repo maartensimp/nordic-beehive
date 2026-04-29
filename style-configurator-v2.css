@@ -2181,8 +2181,85 @@ body {
     display: none;
 }
 
-/* ── Config-right: sticky top verhoogd naar werkelijke headerhootte ── */
+/* ── Config-right: sticky top met ademruimte onder header ── */
 .config-right {
     position: sticky !important;
-    top: 130px !important;
+    top: 170px !important;
+}
+
+/* ── bestel-controls knoppen: herstel ronde stijl in winkelmand ── */
+#bestellingLijst .bestel-controls button {
+    width: 28px !important;
+    height: 28px !important;
+    border-radius: 50% !important;
+    border: 1.5px solid rgba(27,47,68,0.18) !important;
+    background: #FDF7F0 !important;
+    font-size: 15px !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    color: #1B2F44 !important;
+    line-height: 1 !important;
+    text-decoration: none !important;
+    box-shadow: none !important;
+}
+
+/* ── bestel-controls knoppen: min-width fix voor flex containers ── */
+#bestellingLijst .bestel-controls button {
+    min-width: 28px !important;
+    width: 28px !important;
+    height: 28px !important;
+    border-radius: 50% !important;
+    border: 1.5px solid rgba(27,47,68,0.18) !important;
+    background: #FDF7F0 !important;
+    font-size: 15px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    color: #1B2F44 !important;
+    flex-shrink: 0 !important;
+    box-shadow: none !important;
+    text-decoration: none !important;
+}
+
+/* ── bestel-controls: verticale uitlijning fix ── */
+#bestellingLijst .bestel-controls {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    margin-top: 8px !important;
+}
+
+/* ── Verwijder-knop bijenkast: zelfde als AH ── */
+#bestellingLijst .bestel-info > button:last-child {
+    display: inline !important;
+    width: auto !important;
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: #9AA5B0 !important;
+    font-size: 11px !important;
+    font-weight: 500 !important;
+    text-decoration: underline !important;
+    cursor: pointer !important;
+    padding: 2px 0 !important;
+    margin-top: 6px !important;
+    letter-spacing: 0 !important;
+}
+#bestellingLijst .bestel-info > button:last-child:hover {
+    color: #C0392B !important;
+}
+
+/* ── bestel-controls bijenkast: gelijke hoogte knoppen ── */
+#bestellingLijst .bestel-controls {
+    align-items: center !important;
+    line-height: 1 !important;
+}
+
+#bestellingLijst .bestel-controls button {
+    vertical-align: middle !important;
+    flex-shrink: 0 !important;
 }
