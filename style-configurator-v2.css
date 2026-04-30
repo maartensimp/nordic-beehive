@@ -2263,3 +2263,175 @@ body {
     vertical-align: middle !important;
     flex-shrink: 0 !important;
 }
+
+/* ── Hero met foto ── */
+.hero-met-foto {
+    position: relative;
+    min-height: 520px;
+    display: flex;
+    align-items: center;
+    padding: 80px 0;
+    overflow: hidden;
+}
+
+.hero-foto-achtergrond {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.hero-foto-achtergrond img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+    display: block;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(10,25,15,0.78) 0%, rgba(10,25,15,0.55) 40%, rgba(10,25,15,0.1) 70%, rgba(10,25,15,0.0) 100%);
+    z-index: 1;
+}
+
+.hero-inhoud {
+    position: relative;
+    z-index: 2;
+    max-width: 560px;
+}
+
+.hero-met-foto h1 {
+    color: white;
+}
+
+.hero-met-foto .page-intro-sub {
+    color: rgba(255,255,255,0.88);
+}
+
+/* ── 4-koloms USP grid ── */
+.usp-grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 900px) {
+    .usp-grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 560px) {
+    .usp-grid-4 {
+        grid-template-columns: 1fr;
+    }
+    .hero-met-foto {
+        min-height: 420px;
+    }
+}
+
+/* ── Verhaal layout met partner ── */
+.verhaal-layout {
+    display: grid;
+    grid-template-columns: 1fr 220px;
+    gap: 60px;
+    align-items: start;
+}
+
+.verhaal-partner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding-top: 56px; /* lager dan de h2 titel */
+}
+
+.partner-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: #9AA5B0;
+    margin: 0;
+}
+
+.partner-logo {
+    max-width: 180px;
+    width: 100%;
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    .verhaal-layout {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+    .verhaal-partner {
+        align-items: flex-start;
+        padding-top: 0;
+    }
+}
+
+/* ── Hero: tekst meer naar rechts (gecentreerd tussen kast en rechterrand) ── */
+.hero-inhoud {
+    margin-left: 52% !important;
+    max-width: 580px !important;
+}
+
+/* ── Hero: witte knop "Ontdek het verhaal" ── */
+.btn-outline-hero-wit {
+    background: white !important;
+    color: #1B2F44 !important;
+    border-color: white !important;
+}
+.btn-outline-hero-wit:hover {
+    background: #F7C112 !important;
+    color: #1B2F44 !important;
+    border-color: #F7C112 !important;
+}
+
+/* ── Verhaal: kastfoto boven InterWest logo ── */
+.verhaal-kast-foto {
+    width: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+    aspect-ratio: 3/4;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+.verhaal-kast-foto:hover {
+    opacity: 0.88;
+}
+
+/* ── Verhaal partner: iets meer naar omlaag ── */
+.verhaal-partner {
+    padding-top: 80px !important;
+}
+
+@media (max-width: 768px) {
+    .hero-inhoud {
+        margin-left: 0 !important;
+    }
+    .verhaal-partner {
+        padding-top: 0 !important;
+    }
+}
+
+/* ── Foto bij oplossing (selectieve val) ── */
+.oplossing-foto-rij {
+    margin-top: 20px;
+}
+
+.oplossing-foto {
+    width: 100%;
+    max-width: 480px;
+    border-radius: 10px;
+    cursor: pointer;
+    object-fit: cover;
+    transition: opacity 0.2s;
+    display: block;
+}
+
+.oplossing-foto:hover {
+    opacity: 0.88;
+}

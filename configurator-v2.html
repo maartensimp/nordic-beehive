@@ -1100,11 +1100,16 @@ window.addEventListener("load", function() {
         });
     }
 
-    /* Initialiseer SVG-kleuren */
-    updateMezenkastSVG();
+    /* Activeer AH-tabblad als URL ?tab=bescherming bevat */
+    var urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get("tab") === "bescherming") {
+        var beschTab = document.querySelector(".config-tab[data-tab='bescherming']");
+        if (beschTab) beschTab.click();
+    }
 
     /* Initialiseer SVG-kleuren */
     updateMezenkastSVG();
+
 
     /* Knoplisteners: configurator.js beheert bevestigBestelling en stelVraag zelf.
        We laten die ongemoeid zodat zijn referenties intact blijven. */
