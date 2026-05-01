@@ -69,7 +69,9 @@
     <!-- TAB-NAVIGATIE (6): geen nummers -->
     <div class="config-tabs">
         <button class="config-tab active" data-tab="kasten">Bijenkast</button>
+        <button class="config-tab" data-tab="bijenstand">Bijenstand</button>
         <button class="config-tab" data-tab="bescherming">Bescherming tegen hoornaars</button>
+        <button class="config-tab" data-tab="starten">Starten met imkeren</button>
     </div>
 
     <!-- TAB PANEEL: BIJENKAST -->
@@ -245,7 +247,104 @@
 
     </div><!-- /tab-paneel kasten -->
 
-    <!-- TAB PANEEL: BESCHERMING TEGEN HOORNAARS -->
+    <div id="tab-bijenstand" class="tab-paneel">
+    <div class="config-layout">
+
+        <!-- ══ LINKERKOLOM ══ -->
+        <div class="config-left">
+
+            <div class="config-panel">
+                <h2 class="panel-title"><span class="step-badge">1</span> Bijenstand</h2>
+                <p class="ah-product-beschrijving">Stevige bijenstand in massief Douglas hout, geschilderd in één van de authentieke Zweedse kleuren. Frame en poten kunnen in afzonderlijke kleuren worden afgewerkt. Voor lengtes groter dan 4m bestelt u meerdere bijenstanden die u naast elkaar plaatst.</p>
+
+                <div class="belasko-illustratie">
+                    <img src="images/Bijenstand_overzicht.png" alt="Bijenstand overzicht">
+                </div>
+
+                <div class="field-divider"></div>
+                <div class="options-grid">
+
+                    <div class="field-group">
+                        <label for="bijenstand-kleur-frame">Kleur frame</label>
+                        <select id="bijenstand-kleur-frame" onchange="updateBijenstandSVG()">
+                            <option value="geel" selected>Skåne Gul (Geel)</option>
+                            <option value="groen">Dalarna Grön (Groen)</option>
+                            <option value="blauw">Siljan Blå (Blauw)</option>
+                            <option value="rood">Falu Röd (Rood)</option>
+                            <option value="wit">Norrland Vit (Wit)</option>
+                            <option value="roze">Småland Rosé (Roze)</option>
+                        </select>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="bijenstand-kleur-poten">Kleur poten</label>
+                        <select id="bijenstand-kleur-poten" onchange="updateBijenstandSVG()">
+                            <option value="geel" selected>Skåne Gul (Geel)</option>
+                            <option value="groen">Dalarna Grön (Groen)</option>
+                            <option value="blauw">Siljan Blå (Blauw)</option>
+                            <option value="rood">Falu Röd (Rood)</option>
+                            <option value="wit">Norrland Vit (Wit)</option>
+                            <option value="roze">Småland Rosé (Roze)</option>
+                        </select>
+                    </div>
+
+                    <div class="field-group">
+                        <label>Hoogte: <span id="bijenstand-hoogte-val">50</span> cm</label>
+                        <div class="range-wrapper">
+                            <input type="range" id="bijenstand-hoogte" min="30" max="80" step="5" value="50"
+                                oninput="document.getElementById('bijenstand-hoogte-val').textContent=this.value">
+                        </div>
+                    </div>
+
+                    <div class="field-group">
+                        <label>Lengte: <span id="bijenstand-lengte-val">4</span> m</label>
+                        <div class="range-wrapper">
+                            <input type="range" id="bijenstand-lengte" min="1" max="4" step="1" value="4"
+                                oninput="document.getElementById('bijenstand-lengte-val').textContent=this.value">
+                        </div>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="bijenstand-paalhouder">Paalhouders</label>
+                        <select id="bijenstand-paalhouder" onchange="updateBijenstandSVG()">
+                            <option value="geen">Geen</option>
+                            <option value="plat">Plat (vastboren op vloer)</option>
+                            <option value="punt">Gepunt (bevestiging in grond)</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="ah-toevoegen-rij">
+                    <button class="add-btn add-btn-ah" onclick="voegAHToe('bijenstand')">
+                        <span class="add-icon">＋</span>TOEVOEGEN AAN SELECTIE
+                    </button>
+                </div>
+            </div>
+
+        </div><!-- /config-left -->
+
+        <!-- ══ RECHTERKOLOM ══ -->
+        <div class="config-right">
+            <div class="preview-card">
+                <p class="preview-title">Uw configuratie</p>
+                <div class="visual-container">
+                    <div id="bijenstand-svg-wrap" style="width:100%;background:white;"></div>
+                </div>
+                <div class="price-block">
+                    <div class="price-label">Totaalprijs incl. btw</div>
+                    <div class="price-amount">
+                        <span class="currency">Prijs</span><span> op maat</span>
+                    </div>
+                    <div class="price-note">Transport niet inbegrepen</div>
+                </div>
+                <button class="add-btn-order" onclick="voegAHToe('bijenstand')">Configuratie toevoegen ›</button>
+            </div>
+        </div>
+
+    </div><!-- /config-layout -->
+    </div><!-- /tab-bijenstand -->
+
     <div id="tab-bescherming" class="tab-paneel">
         <div class="config-layout">
             <div class="config-left">
@@ -587,6 +686,86 @@
     </div>
     </div><!-- /tab-bescherming -->
 
+    <!-- TAB STARTEN MET IMKEREN -->
+    <div id="tab-starten" class="tab-paneel">
+        <div class="config-layout">
+            <div class="config-left">
+
+            <!-- STARTERSPAKKET -->
+            <div class="config-panel">
+                <h2 class="panel-title"><span class="step-badge">1</span> Starterspakket</h2>
+                <p class="ah-product-beschrijving">Overtuigd, maar wil je niet alles zelf opzoeken? Het starterspakket bevat alles wat je nodig hebt om meteen te beginnen.</p>
+
+                <div class="field-divider"></div>
+
+                <div class="starten-inbegrepen">
+                    <p class="form-sectie-klein">Inbegrepen in het pakket:</p>
+                    <ul class="starten-pakket-lijst">
+                        <li>Imkersvest met geïntegreerde hoed en sluier</li>
+                        <li>Leren handschoenen</li>
+                        <li>Kastbeitel</li>
+                        <li>Vegertje</li>
+                        <li>Beroker</li>
+                        <li>Praktische startersgids met tips en tricks</li>
+                    </ul>
+                </div>
+
+                <div class="field-divider"></div>
+                <div class="options-grid">
+                    <div class="field-group">
+                        <label for="starter-maat-vest">Maat imkersvest</label>
+                        <select id="starter-maat-vest">
+                            <option value="">Kies maat</option>
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                        </select>
+                    </div>
+                    <div class="field-group">
+                        <label for="starter-maat-handschoenen">Maat handschoenen</label>
+                        <select id="starter-maat-handschoenen">
+                            <option value="">Kies maat</option>
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="ah-toevoegen-rij">
+                    <button class="add-btn add-btn-ah" onclick="voegStarterToe('starterspakket')">
+                        <span class="add-icon">＋</span>TOEVOEGEN AAN SELECTIE
+                    </button>
+                </div>
+            </div>
+
+            <!-- PRAKTIJKDAGEN -->
+            <div class="config-panel">
+                <h2 class="panel-title"><span class="step-badge">2</span> Praktijkdagen</h2>
+                <p class="ah-product-beschrijving">Een extra duwtje om te starten. Zet je eerste stappen als imker samen met gelijkgestemden onder begeleiding.</p>
+
+                <div class="field-divider"></div>
+
+                <div class="praktijkdag-melding">
+                    <div class="nota-starten">
+                        <p>Er zijn momenteel nog geen data beschikbaar voor de praktijkdagen. Laat uw interesse na en u wordt als eerste op de hoogte gebracht zodra de data gekend zijn.</p>
+                    </div>
+                </div>
+
+                <div class="ah-toevoegen-rij">
+                    <button class="add-btn add-btn-ah" onclick="voegStarterToe('praktijkdag')">
+                        <span class="add-icon">＋</span>INTERESSE AANGEVEN
+                    </button>
+                </div>
+            </div>
+
+            </div><!-- /config-left -->
+        </div><!-- /config-layout -->
+    </div><!-- /tab-starten -->
+
+
     <!-- BESTELLINGSOVERZICHT KASTEN — door configurator.js beheerd -->
     <div class="bestelling-section">
         <div id="bestellingBlok" class="hidden" style="display:none;">
@@ -675,7 +854,7 @@
 </div><!-- /configurator-page-wrapper -->
 
 <footer class="footer">
-    <div class="container">© 2026 Nordic Beehive – Maarten Simpelaere &nbsp;|&nbsp; info@nordicbeehive.be</div>
+    <div class="container">© 2026 Nordic Beehive – Maarten Simpelaere &nbsp;|&nbsp; info@nordicbeehive.be &nbsp;|&nbsp; <a href="cadeaubon.html" style="color:inherit;">Cadeaubon aanvragen</a></div>
 </footer>
 
 <script src="html2canvas.min.js"></script>
@@ -758,6 +937,65 @@ function valSVGSnapshot(is2t, lok, klei) {
         + '</svg>';
     return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgStr);
 }
+
+function updateBijenstandSVG() {
+    var paalhouder = document.getElementById("bijenstand-paalhouder");
+    var selFrame   = document.getElementById("bijenstand-kleur-frame");
+    var selPoten   = document.getElementById("bijenstand-kleur-poten");
+    if (!paalhouder || !selFrame || !selPoten) return;
+
+    var src = paalhouder.value === "punt" ? "svg/Bijenstand_paalhouder_punt.svg"
+            : paalhouder.value === "plat" ? "svg/Bijenstand_paalhouder_plat.svg"
+            :                               "svg/Bijenstand.svg";
+
+    var frameHex = kleurMap[selFrame.value] || "#E5B75C";
+    var potenHex = kleurMap[selPoten.value] || "#E5B75C";
+
+    fetch(src + "?t=" + Date.now())
+        .then(function(r) { return r.text(); })
+        .then(function(svgText) {
+            /* Vervang achtergrond */
+            svgText = svgText.replace(/fill="white"/g, 'fill="#FDF7F0"');
+            svgText = svgText.replace(/fill="#ffffff"/gi, 'fill="#FDF7F0"');
+
+            /* Vervang houtkleur door frameHex */
+            svgText = svgText.replace(/#F4C678/g, frameHex);
+
+            /* Vervang poten (smalle hoge rects) door potenHex als anders */
+            if (frameHex !== potenHex) {
+                svgText = svgText.replace(
+                    /(<rect[^>]*?)fill="([^"]+)"([^>]*?\/>)/g,
+                    function(m, pre, fill, post) {
+                        /* Extraheer width en height */
+                        var wm = (pre + post).match(/width="([\d.]+)"/);
+                        var hm = (pre + post).match(/height="([\d.]+)"/);
+                        if (wm && hm) {
+                            var w = parseFloat(wm[1]);
+                            var h = parseFloat(hm[1]);
+                            if (w < 100 && h > 200 && fill === frameHex) {
+                                return pre + 'fill="' + potenHex + '"' + post;
+                            }
+                        }
+                        return m;
+                    }
+                );
+            }
+
+            var wrap = document.getElementById("bijenstand-svg-wrap");
+            if (!wrap) return;
+            var tmp = document.createElement("div");
+            tmp.innerHTML = svgText;
+            var svgEl = tmp.querySelector("svg");
+            if (svgEl) {
+                svgEl.setAttribute("width", "100%");
+                svgEl.setAttribute("height", "auto");
+                svgEl.style.display = "block";
+                wrap.innerHTML = "";
+                wrap.appendChild(svgEl);
+            }
+        });
+}
+
 
 function updateHarpSVG() {
     var opvangbak = document.getElementById("harp-opvangbak").value === "ja";
@@ -879,6 +1117,19 @@ function voegAHToe(type) {
         item.bevestiging = bs.options[bs.selectedIndex].text;
         item.bollen      = bo ? bo.value : "nee";
         item.svgSnapshot = mezenSVGSnapshot();
+    } else if (type === "bijenstand") {
+        item.naam         = "Bijenstand";
+        item.kleurFrame   = document.getElementById("bijenstand-kleur-frame").value;
+        item.kleurPoten   = document.getElementById("bijenstand-kleur-poten").value;
+        item.hoogte       = document.getElementById("bijenstand-hoogte").value;
+        item.lengte       = document.getElementById("bijenstand-lengte").value;
+        item.paalhouder   = document.getElementById("bijenstand-paalhouder").value;
+        item.svgSnapshot  = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(
+            '<svg width="160" height="100" viewBox="0 0 160 100" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+            '<rect width="160" height="100" fill="#FDF7F0"/>' +
+            '<text x="80" y="58" font-family="Georgia,serif" font-size="28" font-weight="700" fill="#1B2F44" text-anchor="middle">BS</text>' +
+            '</svg>'
+        );
     } else if (type === "selectieveval") {
         item.naam         = "Selectieve val";
         item.valtype      = document.getElementById("val-type").value;
@@ -904,8 +1155,42 @@ function wijzigAHAantal(index, delta) {
 }
 
 /* ═══════════════════════════════
-   RENDER AH — toont AH-items in bestellingLijst
+   STARTEN MET IMKEREN
 ═══════════════════════════════ */
+function voegStarterToe(type) {
+    var item = { type: type, aantal: 1 };
+
+    if (type === "starterspakket") {
+        var vest  = document.getElementById("starter-maat-vest").value;
+        var hand  = document.getElementById("starter-maat-handschoenen").value;
+        if (!vest || !hand) {
+            alert("Kies een maat voor het vest en de handschoenen.");
+            return;
+        }
+        item.naam        = "Starterspakket";
+        item.maatVest    = vest;
+        item.maatHand    = hand;
+        item.svgSnapshot = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(
+            '<svg width="160" height="100" viewBox="0 0 160 100" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+            '<rect width="160" height="100" fill="#FDF7F0"/>' +
+            '<text x="80" y="58" font-family="Georgia,serif" font-size="32" font-weight="700" fill="#1B2F44" text-anchor="middle">SP</text>' +
+            '</svg>'
+        );
+    } else if (type === "praktijkdag") {
+        item.naam = "Praktijkdag – interesse";
+        item.svgSnapshot = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(
+            '<svg width="160" height="100" viewBox="0 0 160 100" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+            '<rect width="160" height="100" fill="#FDF7F0"/>' +
+            '<text x="80" y="58" font-family="Georgia,serif" font-size="32" font-weight="700" fill="#1B2F44" text-anchor="middle">PD</text>' +
+            '</svg>'
+        );
+    }
+
+    ahBestelling.push(item);
+    renderAH();
+}
+
+
 function renderAH() {
     var heeftAH     = ahBestelling.length > 0;
     var heeftKasten = (typeof bestelling !== "undefined" && bestelling.length > 0);
@@ -938,6 +1223,17 @@ function renderAH() {
             else delen.push("Rooster & trechter (minimale bijvangst)");
             if (item.lokvloeistof === "ja") delen.push("Met lokvloeistof");
             if (item.kleikorrels  === "ja") delen.push("Met kleikorrels");
+        } else if (item.type === "bijenstand") {
+            delen.push("Frame: " + item.kleurFrame);
+            if (item.kleurPoten !== item.kleurFrame) delen.push("Poten: " + item.kleurPoten);
+            delen.push(item.hoogte + " cm hoog");
+            delen.push(item.lengte + " m lang");
+            if (item.paalhouder !== "geen") delen.push("Paalhouders: " + item.paalhouder);
+        } else if (item.type === "starterspakket") {
+            delen.push("Vest: " + item.maatVest);
+            delen.push("Handschoenen: " + item.maatHand);
+        } else if (item.type === "praktijkdag") {
+            delen.push("Interesse geregistreerd");
         }
 
         var aantal = item.aantal || 1;
@@ -945,7 +1241,7 @@ function renderAH() {
         div.className = "bestel-kaart ah-bestel-kaart";
 
         var visualDiv = document.createElement("div");
-        if ((item.type === "mezenkast" || item.type === "harp" || item.type === "selectieveval" || item.type === "belasko") && item.svgSnapshot) {
+        if ((item.type === "mezenkast" || item.type === "harp" || item.type === "selectieveval" || item.type === "belasko" || item.type === "starterspakket" || item.type === "praktijkdag" || item.type === "bijenstand") && item.svgSnapshot) {
             visualDiv.className = "bestel-visual";
             visualDiv.style.cssText = "background:#FDF7F0;padding:4px;display:flex;align-items:center;justify-content:center;";
             var thumb = document.createElement("img");
@@ -1100,15 +1396,17 @@ window.addEventListener("load", function() {
         });
     }
 
-    /* Activeer AH-tabblad als URL ?tab=bescherming bevat */
+    /* Activeer tabblad op basis van URL parameter */
     var urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get("tab") === "bescherming") {
-        var beschTab = document.querySelector(".config-tab[data-tab='bescherming']");
-        if (beschTab) beschTab.click();
+    var tabParam = urlParams.get("tab");
+    if (tabParam === "bescherming" || tabParam === "starten" || tabParam === "bijenstand") {
+        var doelTab = document.querySelector(".config-tab[data-tab='" + tabParam + "']");
+        if (doelTab) doelTab.click();
     }
 
     /* Initialiseer SVG-kleuren */
     updateMezenkastSVG();
+    setTimeout(updateBijenstandSVG, 100);
 
 
     /* Knoplisteners: configurator.js beheert bevestigBestelling en stelVraag zelf.
