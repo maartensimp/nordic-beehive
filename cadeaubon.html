@@ -303,6 +303,35 @@
                     </div>
                 </div>
 
+                <p class="form-sectie-titel">Leveringswijze bon</p>
+
+                <div class="form-veld">
+                    <label class="factuur-toggle">
+                        <input type="checkbox" id="fysiek" onchange="toggleFysiek()">
+                        <span>Ik wens een fysieke cadeaubon <span style="color:#9AA5B0;font-weight:400;">(+ € 2,00)</span></span>
+                    </label>
+                </div>
+
+                <div id="fysiekVelden" style="display:none;">
+                    <div class="form-veld">
+                        <label>Ontvangst fysieke bon</label>
+                        <label class="factuur-toggle" style="margin-top:8px;">
+                            <input type="radio" name="fysiek_optie" id="fysiek_afhalen" value="afhalen" checked>
+                            <span>Afhaling in Hertsberge <span style="color:#9AA5B0;font-weight:400;">(geen meerprijs)</span></span>
+                        </label>
+                        <label class="factuur-toggle" style="margin-top:6px;">
+                            <input type="radio" name="fysiek_optie" id="fysiek_levering" value="levering" onchange="updateFysiekPrijs()" >
+                            <span>Levering per post <span style="color:#9AA5B0;font-weight:400;">(+ € 2,00)</span></span>
+                        </label>
+                    </div>
+                    <div id="leveringsadres" style="display:none;">
+                        <div class="form-veld">
+                            <label for="lever_adres">Leveringsadres</label>
+                            <input type="text" id="lever_adres" name="lever_adres" placeholder="Straat + nummer, postcode gemeente">
+                        </div>
+                    </div>
+                </div>
+
                 <p class="form-sectie-titel">Uw contactgegevens</p>
 
                 <div class="form-2col">
@@ -351,7 +380,7 @@
 
                 <div class="nota-box">
                     <strong>Hoe werkt het?</strong><br>
-                    Na uw aanvraag ontvangt u een orderbevestiging met betalingsinstructies. De cadeaubon wordt pas geactiveerd na ontvangst van de betaling en wordt als PDF per e-mail bezorgd.
+                    Na uw aanvraag ontvangt u een orderbevestiging met betalingsinstructies. De cadeaubon wordt pas geactiveerd na ontvangst van de betaling. Een digitale bon wordt als PDF per e-mail bezorgd. Een fysieke bon kost € 2,00 extra; levering per post kost nog eens € 2,00 extra.
                 </div>
 
                 <button type="submit" class="btn-aanvragen">Cadeaubon aanvragen</button>
@@ -414,13 +443,25 @@ document.getElementById('cadeaubonForm').addEventListener('submit', function(e) 
 
     var geldig = geldigTot();
 
+    var fysiek   = document.getElementById('fysiek').checked;
+    var fysiekOptie = fysiek ? document.querySelector('input[name="fysiek_optie"]:checked').value : 'digitaal';
+    var leverAdres = document.getElementById('lever_adres') ? document.getElementById('lever_adres').value : '';
+
+    var meerprijs = 0;
+    if (fysiek) meerprijs += 2;
+    if (fysiekOptie === 'levering') meerprijs += 2;
+    var totaalBedrag = parseInt(bedrag) + meerprijs;
+
     var data = {
-        _subject: 'Cadeaubon aanvraag ' + volgnummer + ' – €' + bedrag,
+        _subject: 'Cadeaubon aanvraag ' + volgnummer + ' – €' + bedrag + (meerprijs > 0 ? ' + €' + meerprijs + ' (bon)' : ''),
         volgnummer: volgnummer,
         bedrag: '€' + bedrag + ',-',
         geldig_tot: geldig,
         gegeven_door: gegeven || '(niet ingevuld)',
         voor: voor || '(niet ingevuld)',
+        leveringswijze_bon: fysiek ? ('Fysiek – ' + (fysiekOptie === 'levering' ? 'levering per post naar ' + (leverAdres || '?') : 'afhaling')) : 'Digitaal (PDF per e-mail)',
+        meerprijs_bon: meerprijs > 0 ? '€' + meerprijs + ',-' : 'geen',
+        totaal_te_betalen: '€' + totaalBedrag + ',- (excl. evt. meerprijs bestelling)',
         naam: naam,
         email: email,
         telefoon: telefoon || '(niet ingevuld)',
@@ -445,6 +486,22 @@ document.getElementById('cadeaubonForm').addEventListener('submit', function(e) 
     .catch(function() {
         alert('Er is een fout opgetreden. Controleer uw internetverbinding.');
     });
+});
+
+function toggleFysiek() {
+    var cb = document.getElementById('fysiek');
+    document.getElementById('fysiekVelden').style.display = cb.checked ? 'block' : 'none';
+    if (!cb.checked) {
+        document.getElementById('leveringsadres').style.display = 'none';
+        document.getElementById('fysiek_afhalen').checked = true;
+    }
+}
+
+document.addEventListener('change', function(e) {
+    if (e.target.name === 'fysiek_optie') {
+        document.getElementById('leveringsadres').style.display =
+            e.target.value === 'levering' ? 'block' : 'none';
+    }
 });
 
 function toggleFactuur() {
