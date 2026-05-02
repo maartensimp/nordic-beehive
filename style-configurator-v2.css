@@ -2569,3 +2569,83 @@ body {
     padding: 0;
     margin: 0;
 }
+
+/* ── FAQ accordeon ── */
+.faq-groep {
+    margin-bottom: 40px;
+}
+
+.faq-groep-titel {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: #E5B75C;
+    margin: 0 0 12px;
+    padding-bottom: 10px;
+    border-bottom: 1.5px solid #E8DDD0;
+}
+
+.faq-item.accordion {
+    border-bottom: 1px solid #E8DDD0;
+}
+
+.faq-vraag {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background: none;
+    border: none;
+    border-radius: 0;
+    outline: none;
+    box-shadow: none;
+    padding: 18px 0;
+    font-family: 'DM Sans', Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #1B2F44;
+    cursor: pointer;
+    text-align: left;
+    gap: 16px;
+    transition: color 0.15s;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.faq-vraag:hover {
+    color: #E5B75C;
+}
+
+.faq-vraag:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.faq-icoon {
+    font-size: 22px;
+    font-weight: 300;
+    color: #E5B75C;
+    flex-shrink: 0;
+    line-height: 1;
+    transition: transform 0.2s;
+}
+
+.faq-antwoord {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+}
+
+.faq-antwoord p {
+    padding-bottom: 20px;
+    color: #5A6B7A;
+    line-height: 1.75;
+    font-size: 15px;
+    margin: 0;
+}
+
+.faq-antwoord a {
+    color: #1B2F44;
+    text-decoration: underline;
+}
